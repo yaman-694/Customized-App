@@ -1,8 +1,9 @@
-import Hero from "./components/Hero";
+import Hero from './components/Hero';
 
 function App() {
   return (
     <>
+      {/* client 1 */}
       <Hero />
     </>
   );
