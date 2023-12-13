@@ -13,12 +13,11 @@ const Search = React.forwardRef<HTMLInputElement, SearchProps>(
   ({ className, placeholder, ...props }, ref) => {
     return (
       <div
-        className={cn('w-full flex gap-1 bg-transparent px-3 py-1', className)}
-        ref={ref}
+        className={cn('flex w-full gap-1 bg-transparent px-3 py-1', className)}
         {...props}
       >
-        <Input variant={'withOutline'} placeholder={placeholder} />
-        <Icon name="search" iconPath={search} />
+        <Input variant={'withOutline'} placeholder={placeholder} ref={ref} />
+        <Icon width={'20'} height="20" name="search" iconPath={search} />
       </div>
     );
   },
