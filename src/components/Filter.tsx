@@ -73,7 +73,7 @@ export default function Filter({
     }
   };
   return (
-    <div className="m-3 flex flex-col items-start gap-1 rounded-lg border border-input p-2">
+    <div className="my-3 flex flex-col items-start rounded-lg border border-input p-2">
       {align === 2 && (
         <>
           <div className="flex w-full gap-2">

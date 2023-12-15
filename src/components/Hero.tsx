@@ -6,6 +6,8 @@ import { TopGradients } from './ui/Gradients';
 import { Heading } from './ui/Hero/Heading';
 import { SubHeading } from './ui/Hero/SubHeading';
 import { FilterBoxProvider } from './../contexts/filterBox';
+import JobCard from './JobCard';
+import { JobCards } from './JobCards';
 
 export default function Hero() {
   const dropDown1 = useRef(null);
@@ -22,12 +24,6 @@ export default function Hero() {
               Empower your career with a dynamic and collaborative work
               environment.
             </SubHeading>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Button variant={'blue'}>Get started</Button>
-              <Button variant={'wt_bg'} className="gap-1">
-                Learn more <span aria-hidden="true">→</span>
-              </Button>
-            </div>
             <FilterBoxProvider>
               <Filter
                 align={1}
@@ -121,6 +117,7 @@ export default function Hero() {
                   ],
                 }}
               />
+            <JobCards />
             </FilterBoxProvider>
           </div>
         </div>
