@@ -5,26 +5,40 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/Button";
 import { Separator } from "./ui/separator";
 
-const JobCardVariants = cva("", {
-  variants: {
-    variant: {
-      default:
-        "bg-white flex w-full flex-col items-stretch px-11 py-10 rounded-lg border border-input border-gray-200 max-md:max-w-full max-md:my-10 max-md:px-5",
+const JobCardVariants = cva(
+  "bg-white flex w-full flex-col items-stretch px-11 py-10 rounded-lg max-md:max-w-full max-md:my-10 max-md:px-5",
+  {
+    variants: {
+      variant: {
+        default: "border border-input border-gray-200",
+        border: "border-2 border-input border-gray-900",
+      },
     },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-});
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
 
 export interface JobCardProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof JobCardVariants> {
-}
+    VariantProps<typeof JobCardVariants> {}
 
 type Props = {
-  jobName: string;
-  jobDescription: string;
+  jobName: {
+    name: string;
+    font: string;
+    fontWeight: string;
+    fontColor: string;
+    fontFamily?: string;
+  };
+  jobDescription: {
+    description: string;
+    font: string;
+    fontWeight: string;
+    fontColor: string;
+    fontFamily?: string;
+  };
 };
 
 const JobCard = React.forwardRef<HTMLDivElement, JobCardProps & Props>(
@@ -33,8 +47,10 @@ const JobCard = React.forwardRef<HTMLDivElement, JobCardProps & Props>(
       <div className={cn(JobCardVariants({ variant, className }))} ref={ref}>
         <div className="flex items-stretch justify-between gap-5 px-px max-md:max-w-full max-md:flex-wrap">
           <div className="flex flex-col items-stretch">
-            <header className="text-left justify-center text-black text-3xl font-semibold">
-              {jobName}
+            <header
+              className={`${jobName.fontFamily} text-left justify-center ${jobName.fontColor} ${jobName.font} ${jobName.fontWeight}`}
+            >
+              {jobName.name}
             </header>
             <div className="flex items-stretch gap-3 mt-3 pr-20 max-md:pr-5">
               {Array.from(["Engineering", "London, UK", "Remote"]).map(
@@ -54,12 +70,16 @@ const JobCard = React.forwardRef<HTMLDivElement, JobCardProps & Props>(
             <Button variant={"blue"}>Apply Now</Button>
           </div>
         </div>
-        <Separator orientation="horizontal" className="mt-5" />
-        <div className="text-left text-gray-500 text-base font-medium mt-5 max-md:max-w-full">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the standard dummy text ever
-          since the 1500s, sS
-        </div>
+        {!jobDescription?.description && (
+          <>
+            <Separator orientation="horizontal" className="mt-5" />
+            <div className="text-left text-gray-500 text-base font-medium mt-5 max-md:max-w-full">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the standard dummy text ever since
+              the 1500s
+            </div>
+          </>
+        )}
       </div>
     );
   }
@@ -67,4 +87,4 @@ const JobCard = React.forwardRef<HTMLDivElement, JobCardProps & Props>(
 
 JobCard.displayName = "JobCard";
 
-export {JobCard};
+export { JobCard };

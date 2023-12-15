@@ -10,19 +10,25 @@ export function JobCards() {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data.data);
         setJobs(data.data);
       });
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mt-7">
       {jobs && jobs.length > 0 && (
         <>
-          {jobs.map((job) => (
+          {jobs.map((job: any) => (
             <div className="mb-3" key={job.job_id}>
               <JobCard
                 key={job.job_id}
-                jobName={job.name}
+                jobName={{
+                  name: job.name,
+                  font: "text-3xl",
+                  fontWeight: "font-semibold",
+                  fontColor: "text-black",
+                }}
                 jobDescription={job.description}
               />
             </div>

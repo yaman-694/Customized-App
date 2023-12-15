@@ -1,13 +1,11 @@
-'use client'
-import { useRef } from 'react';
-import Filter from './Filter';
-import { Button } from './ui/Button';
-import { TopGradients } from './ui/Gradients';
-import { Heading } from './ui/Hero/Heading';
-import { SubHeading } from './ui/Hero/SubHeading';
-import { FilterBoxProvider } from './../contexts/filterBox';
-import JobCard from './JobCard';
-import { JobCards } from './JobCards';
+"use client";
+import { useRef } from "react";
+import { FilterBoxProvider } from "./../contexts/filterBox";
+import Filter from "./Filter";
+import { JobCards } from "./JobCards";
+import { TopGradients } from "./ui/Gradients";
+import { Heading } from "./ui/Hero/Heading";
+import { SubHeading } from "./ui/Hero/SubHeading";
 
 export default function Hero() {
   const dropDown1 = useRef(null);
@@ -30,94 +28,94 @@ export default function Hero() {
                 components={{
                   search: [
                     {
-                      name: 'job_name',
-                      placeholder: 'Job Name',
+                      name: "job_name",
+                      placeholder: "Job Name",
                       ref: search1,
                     },
                   ],
                   dropDown: [
                     {
-                      name: 'Country',
+                      name: "Country",
                       ref: dropDown1,
                       options: [
                         {
-                          value: 'next.js',
-                          label: 'Next.js',
+                          value: "next.js",
+                          label: "Next.js",
                         },
                         {
-                          value: 'sveltekit',
-                          label: 'SvelteKit',
+                          value: "sveltekit",
+                          label: "SvelteKit",
                         },
                         {
-                          value: 'nuxt.js',
-                          label: 'Nuxt.js',
+                          value: "nuxt.js",
+                          label: "Nuxt.js",
                         },
                         {
-                          value: 'remix',
-                          label: 'Remix',
+                          value: "remix",
+                          label: "Remix",
                         },
                         {
-                          value: 'astro',
-                          label: 'Astro',
+                          value: "astro",
+                          label: "Astro",
                         },
                       ],
                     },
                     {
-                      name: 'Location',
+                      name: "Location",
                       ref: dropDown1,
                       options: [
                         {
-                          value: 'next.js',
-                          label: 'Next.js',
+                          value: "next.js",
+                          label: "Next.js",
                         },
                         {
-                          value: 'sveltekit',
-                          label: 'SvelteKit',
+                          value: "sveltekit",
+                          label: "SvelteKit",
                         },
                         {
-                          value: 'nuxt.js',
-                          label: 'Nuxt.js',
+                          value: "nuxt.js",
+                          label: "Nuxt.js",
                         },
                         {
-                          value: 'remix',
-                          label: 'Remix',
+                          value: "remix",
+                          label: "Remix",
                         },
                         {
-                          value: 'astro',
-                          label: 'Astro',
+                          value: "astro",
+                          label: "Astro",
                         },
                       ],
                     },
                     {
-                      name: 'Role',
+                      name: "Role",
                       ref: dropDown2,
                       options: [
                         {
-                          value: 'next.js',
-                          label: 'Next.js',
+                          value: "next.js",
+                          label: "Next.js",
                         },
                         {
-                          value: 'sveltekit',
-                          label: 'SvelteKit',
+                          value: "sveltekit",
+                          label: "SvelteKit",
                         },
                         {
-                          value: 'nuxt.js',
-                          label: 'Nuxt.js',
+                          value: "nuxt.js",
+                          label: "Nuxt.js",
                         },
                         {
-                          value: 'remix',
-                          label: 'Remix',
+                          value: "remix",
+                          label: "Remix",
                         },
                         {
-                          value: 'astro',
-                          label: 'Astro',
+                          value: "astro",
+                          label: "Astro",
                         },
                       ],
                     },
                   ],
                 }}
               />
-            <JobCards />
+              <JobCards />
             </FilterBoxProvider>
           </div>
         </div>

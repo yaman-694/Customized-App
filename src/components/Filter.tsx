@@ -4,6 +4,7 @@ import { DropDown } from './ui/DropDown';
 import { Search } from './ui/Search';
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
+import { useEffect, useState } from 'react';
 
 type option = {
   value: string;
@@ -23,7 +24,9 @@ type DropDown = {
 const Buttons = ({
   handleSubmit,
   dispatch,
+  setReset
 }: {
+  setReset: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit: () => void;
   dispatch: React.Dispatch<{
     type: string;
@@ -39,6 +42,7 @@ const Buttons = ({
           dispatch({
             type: 'RESET',
           });
+          setReset(s=>!s)
         }}
       >
         Reset
@@ -61,7 +65,7 @@ export default function Filter({
   };
 }) {
   const { state, dispatch } = useFilterBox();
-
+  const [reset, setReset] = useState(false);
   const handleSubmit = () => {
     for (let i = 0; i < components.search.length; i++) {
       dispatch({
@@ -72,6 +76,9 @@ export default function Filter({
       components.search[i].ref.current!.value = '';
     }
   };
+  useEffect(() => {
+    setReset(false);
+  }, [reset]);
   return (
     <div className="my-3 flex flex-col items-start rounded-lg border border-input p-2">
       {align === 2 && (
@@ -85,7 +92,11 @@ export default function Filter({
                 placeholder={component.placeholder}
               />
             ))}
-            <Buttons handleSubmit={handleSubmit} dispatch={dispatch} />
+            <Buttons
+              setReset={setReset}
+              handleSubmit={handleSubmit}
+              dispatch={dispatch}
+            />
           </div>
           <Separator orientation="horizontal" />
           <div className="mt-2 flex gap-3">
@@ -95,6 +106,7 @@ export default function Filter({
                 key={component.name}
                 type={component.name}
                 options={component.options}
+                reset={reset}
               />
             ))}
           </div>
@@ -116,9 +128,14 @@ export default function Filter({
               key={component.name}
               type={component.name}
               options={component.options}
+              reset={reset}
             />
           ))}
-          <Buttons handleSubmit={handleSubmit} dispatch={dispatch} />
+          <Buttons
+            setReset={setReset}
+            handleSubmit={handleSubmit}
+            dispatch={dispatch}
+          />
         </div>
       )}
       <div className="mt-1 flex flex-wrap gap-2">
@@ -140,7 +157,7 @@ export default function Filter({
           }
 
           // If the property is not an array, render a single Badge
-          if (values !== '') {
+          if (values !== "") {
             return (
               <Badge variant="round" key={key}>
                 {values}

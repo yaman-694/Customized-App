@@ -20,13 +20,20 @@ import { useFilterBox } from '@/contexts/filterBox';
 export function DropDown({
   type,
   options,
+  reset
 }: {
   type: 'Role' | 'Location' | 'Company'|'Country';
   options: { value: string; label: string }[];
+  reset: boolean
 }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState<string[]>([]);
   const { dispatch } = useFilterBox();
+
+  React.useEffect(() => {
+    if(reset)
+    setValue([]);
+  }, [reset]);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
