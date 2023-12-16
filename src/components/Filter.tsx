@@ -1,32 +1,16 @@
-import { useFilterBox } from '@/contexts/filterBox';
-import { Button } from './ui/Button';
-import { DropDown } from './ui/DropDown';
-import { Search } from './ui/Search';
-import { Badge } from './ui/badge';
-import { Separator } from './ui/separator';
-import { useEffect, useState } from 'react';
-
-type option = {
-  value: string;
-  label: string;
-};
-type ComponentSearch = {
-  name: string;
-  placeholder: string;
-  ref: React.MutableRefObject<HTMLInputElement | null>;
-};
-type DropDown = {
-  name: 'Role' | 'Location' | 'Company' | 'Country';
-  ref: React.MutableRefObject<HTMLSelectElement | null>;
-  options: option[];
-};
+import { useFilterContext } from "@/contexts/filterContext";
+import { ComponentSearch, DropDownType } from "@/interfaces";
+import { Form } from "./filter/Form";
+import { Button } from "./ui/Button";
+import { DropDown } from "./ui/DropDown";
+import { Search } from "./ui/Search";
+import { Badge } from "./ui/badge";
+import { Separator } from "./ui/separator";
 
 const Buttons = ({
   handleSubmit,
   dispatch,
-  setReset
 }: {
-  setReset: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit: () => void;
   dispatch: React.Dispatch<{
     type: string;
@@ -37,17 +21,16 @@ const Buttons = ({
     <div className="flex">
       <Button
         className="m-auto"
-        variant={'wt_bg'}
+        variant={"wt_bg"}
         onClick={() => {
           dispatch({
-            type: 'RESET',
+            type: "RESET",
           });
-          setReset(s=>!s)
         }}
       >
         Reset
       </Button>
-      <Button className="m-auto" variant={'blue'} onClick={handleSubmit}>
+      <Button className="m-auto" variant={"blue"} onClick={handleSubmit}>
         Search
       </Button>
     </div>
@@ -61,11 +44,10 @@ export default function Filter({
   align: 1 | 2;
   components: {
     search: ComponentSearch[];
-    dropDown: DropDown[];
+    dropDown: DropDownType[];
   };
 }) {
-  const { state, dispatch } = useFilterBox();
-  const [reset, setReset] = useState(false);
+  const { state, dispatch } = useFilterContext();
   const handleSubmit = () => {
     for (let i = 0; i < components.search.length; i++) {
       dispatch({
@@ -73,14 +55,11 @@ export default function Filter({
         value: components.search[i].ref.current?.value,
       });
       // reset search input
-      components.search[i].ref.current!.value = '';
+      components.search[i].ref.current!.value = "";
     }
   };
-  useEffect(() => {
-    setReset(false);
-  }, [reset]);
   return (
-    <div className="my-3 flex flex-col items-start rounded-lg border border-input p-2">
+    <div className="my-16 flex flex-col items-start rounded-lg border border-input p-2">
       {align === 2 && (
         <>
           <div className="flex w-full gap-2">
@@ -92,21 +71,16 @@ export default function Filter({
                 placeholder={component.placeholder}
               />
             ))}
-            <Buttons
-              setReset={setReset}
-              handleSubmit={handleSubmit}
-              dispatch={dispatch}
-            />
+            <Buttons handleSubmit={handleSubmit} dispatch={dispatch} />
           </div>
           <Separator orientation="horizontal" />
           <div className="mt-2 flex gap-3">
-            {components.dropDown.map((component: DropDown) => (
+            {components.dropDown.map((component: DropDownType) => (
               // ref in dropdown
               <DropDown
                 key={component.name}
                 type={component.name}
                 options={component.options}
-                reset={reset}
               />
             ))}
           </div>
@@ -114,35 +88,34 @@ export default function Filter({
       )}
 
       {align === 1 && components.search.length === 1 && (
-        <div className="flex items-center gap-2 p-2">
+        <div className="flex items-center justify-between p-2 w-full gap-3">
+          {/* <Form search={components.search}/> */}
           {components.search.map((component: ComponentSearch) => (
             <Search
+              // {...register(component.name)}
               name={component.name}
-              key={component.name}
               ref={component.ref}
+              key={component.name}
               placeholder={component.placeholder}
             />
           ))}
-          {components.dropDown.map((component: DropDown) => (
+          {components.dropDown.map((component: DropDownType) => (
             <DropDown
               key={component.name}
               type={component.name}
               options={component.options}
-              reset={reset}
             />
           ))}
-          <Buttons
-            setReset={setReset}
-            handleSubmit={handleSubmit}
-            dispatch={dispatch}
-          />
+          <Buttons handleSubmit={handleSubmit} dispatch={dispatch} />
         </div>
       )}
-      <div className="mt-1 flex flex-wrap gap-2">
+      <div className="mt-1 px-2 flex flex-wrap gap-3">
         {Object.keys(state).map((key: string) => {
           // Use type assertion to tell TypeScript that the property exists
+          if (key === "active") return null;
           interface FilterBox {
-            [key: string]: string[] | string;
+            active: boolean;
+            [key: string]: string[] | string | boolean;
           }
 
           const values = (state as FilterBox)[key];
@@ -150,7 +123,17 @@ export default function Filter({
           // Check if the property is an array before mapping
           if (Array.isArray(values)) {
             return values.map((value: string, index: number) => (
-              <Badge variant="round" key={index}>
+              <Badge
+                variant="round"
+                className="cursor-pointer text-sm hover:bg-black hover:text-white transition"
+                key={index}
+                onClick={() => {
+                  dispatch({
+                    type: `REMOVE_${key.toUpperCase()}`,
+                    value: value as string,
+                  });
+                }}
+              >
                 {value}
               </Badge>
             ));
@@ -159,7 +142,17 @@ export default function Filter({
           // If the property is not an array, render a single Badge
           if (values !== "") {
             return (
-              <Badge variant="round" key={key}>
+              <Badge
+                variant="round"
+                className="cursor-pointer text-sm hover:bg-black hover:text-white transition"
+                key={key}
+                onClick={() => {
+                  dispatch({
+                    type: `REMOVE_${key.toUpperCase()}`,
+                    value: values as string,
+                  });
+                }}
+              >
                 {values}
               </Badge>
             );

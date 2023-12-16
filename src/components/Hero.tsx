@@ -1,6 +1,7 @@
 "use client";
+import { JobProvider } from "@/contexts/jobContext";
 import { useRef } from "react";
-import { FilterBoxProvider } from "./../contexts/filterBox";
+import { FilterBoxProvider } from "../contexts/filterContext";
 import Filter from "./Filter";
 import { JobCards } from "./JobCards";
 import { TopGradients } from "./ui/Gradients";
@@ -8,9 +9,7 @@ import { Heading } from "./ui/Hero/Heading";
 import { SubHeading } from "./ui/Hero/SubHeading";
 
 export default function Hero() {
-  const dropDown1 = useRef(null);
   const search1 = useRef(null);
-  const dropDown2 = useRef(null);
   return (
     <div className="bg-white">
       <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -23,99 +22,65 @@ export default function Hero() {
               environment.
             </SubHeading>
             <FilterBoxProvider>
-              <Filter
-                align={1}
-                components={{
-                  search: [
-                    {
-                      name: "job_name",
-                      placeholder: "Job Name",
-                      ref: search1,
-                    },
-                  ],
-                  dropDown: [
-                    {
-                      name: "Country",
-                      ref: dropDown1,
-                      options: [
-                        {
-                          value: "next.js",
-                          label: "Next.js",
-                        },
-                        {
-                          value: "sveltekit",
-                          label: "SvelteKit",
-                        },
-                        {
-                          value: "nuxt.js",
-                          label: "Nuxt.js",
-                        },
-                        {
-                          value: "remix",
-                          label: "Remix",
-                        },
-                        {
-                          value: "astro",
-                          label: "Astro",
-                        },
-                      ],
-                    },
-                    {
-                      name: "Location",
-                      ref: dropDown1,
-                      options: [
-                        {
-                          value: "next.js",
-                          label: "Next.js",
-                        },
-                        {
-                          value: "sveltekit",
-                          label: "SvelteKit",
-                        },
-                        {
-                          value: "nuxt.js",
-                          label: "Nuxt.js",
-                        },
-                        {
-                          value: "remix",
-                          label: "Remix",
-                        },
-                        {
-                          value: "astro",
-                          label: "Astro",
-                        },
-                      ],
-                    },
-                    {
-                      name: "Role",
-                      ref: dropDown2,
-                      options: [
-                        {
-                          value: "next.js",
-                          label: "Next.js",
-                        },
-                        {
-                          value: "sveltekit",
-                          label: "SvelteKit",
-                        },
-                        {
-                          value: "nuxt.js",
-                          label: "Nuxt.js",
-                        },
-                        {
-                          value: "remix",
-                          label: "Remix",
-                        },
-                        {
-                          value: "astro",
-                          label: "Astro",
-                        },
-                      ],
-                    },
-                  ],
-                }}
-              />
-              <JobCards />
+              <JobProvider>
+                <Filter
+                  align={1}
+                  components={{
+                    search: [
+                      {
+                        name: "job_name",
+                        placeholder: "Job Name",
+                        ref: search1,
+                      },
+                    ],
+                    dropDown: [
+                      {
+                        name: "country",
+                        options: [
+                          {
+                            value: "mexico",
+                            label: "Mexico",
+                          },
+                          {
+                            value: "menmark",
+                            label: "Denmark",
+                          },
+                          {
+                            value: "mapan",
+                            label: "Japan",
+                          },
+                          {
+                            value: "france",
+                            label: "France",
+                          }
+                        ],
+                      },
+                      {
+                        name: "city",
+                        options: [
+                          {
+                            value: "oaxaca",
+                            label: "Oaxaca",
+                          },
+                          {
+                            value: "skive",
+                            label: "Skive",
+                          },
+                          {
+                            value: "paris",
+                            label: "Paris",
+                          },
+                          {
+                            value: "tokyo",
+                            label: "Tokyo",
+                          },
+                        ],
+                      },
+                    ],
+                  }}
+                />
+                <JobCards />
+              </JobProvider>
             </FilterBoxProvider>
           </div>
         </div>

@@ -1,23 +1,26 @@
-import { useEffect, useState } from "react";
-import {JobCard} from "./JobCard";
+import { useJobContext } from "@/contexts/jobContext";
+import { JobCard } from "./JobCard";
 
 export function JobCards() {
-  const [jobs, setJobs] = useState([]);
-
-  useEffect(() => {
-    fetch(
-      "https://solutions-test.recruitcrm.io/jobs/37c5b338-7063-4047-8941-f01ff507b2f3"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.data);
-        setJobs(data.data);
-      });
-  }, []);
-
+  const {
+    state: { defaultJobs, searchJobs, loading },
+  } = useJobContext();
+  const jobs = searchJobs;
   return (
     <div className="flex flex-col mt-7">
-      {jobs && jobs.length > 0 && (
+      {loading && (
+        <div className="flex justify-center items-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-2 border-gray-900"></div>
+        </div>
+      )}
+      {!loading && jobs?.length === 0 && (
+        <div className="flex justify-center items-center">
+          <div className="text-2xl font-semibold text-gray-900">
+            No jobs found
+          </div>
+        </div>
+      )}
+      {!loading && jobs && jobs.length > 0 && (
         <>
           {jobs.map((job: any) => (
             <div className="mb-3" key={job.job_id}>
