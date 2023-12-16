@@ -5,7 +5,6 @@ export type option = {
 export type ComponentSearch = {
   name: string;
   placeholder: string;
-  ref: React.MutableRefObject<HTMLInputElement | null>;
 };
 export type DropDownType = {
   name: DropDownOptionType["type"];
