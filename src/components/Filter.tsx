@@ -89,16 +89,7 @@ export default function Filter({
 
       {align === 1 && components.search.length === 1 && (
         <div className="flex items-center justify-between p-2 w-full gap-3">
-          {/* <Form search={components.search}/> */}
-          {components.search.map((component: ComponentSearch) => (
-            <Search
-              // {...register(component.name)}
-              name={component.name}
-              ref={component.ref}
-              key={component.name}
-              placeholder={component.placeholder}
-            />
-          ))}
+          <Form search={components.search}/>
           {components.dropDown.map((component: DropDownType) => (
             <DropDown
               key={component.name}

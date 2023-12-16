@@ -1,8 +1,8 @@
+import { useFilterContext } from "@/contexts/filterContext";
+import { ComponentSearch } from "@/interfaces";
 import { useForm } from "react-hook-form";
 import { Search } from "../ui/Search";
-import { ComponentSearch } from "@/interfaces";
-
-
+import { Input } from "../ui/Input";
 
 export function Form({ search }: { search: ComponentSearch[] }) {
   const {
@@ -11,20 +11,23 @@ export function Form({ search }: { search: ComponentSearch[] }) {
     reset,
     formState: { errors },
   } = useForm();
+  const { dispatch } = useFilterContext();
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    dispatch({
+      type: `ADD_${search[0].name.toUpperCase()}`,
+      value: data[search[0].name],
+    });
+    reset();
   };
 
   return (
-    <form id="searchField" onSubmit={handleSubmit(onSubmit)}>
+    <form id="searchField" className="w-full" onSubmit={handleSubmit(onSubmit)}>
       {search.map((component: ComponentSearch) => (
-        <Search
-          {...register(component.name)}
-          name={component.name}
-          key={component.name}
-          placeholder={component.placeholder}
-        />
+        <Search key={component.name}>
+          <Input {...register(component.name)}
+          variant={"withOutline"} placeholder={component.placeholder}  />
+        </Search>
       ))}
     </form>
   );

@@ -42,11 +42,11 @@ export default function Hero() {
                             label: "Mexico",
                           },
                           {
-                            value: "menmark",
+                            value: "denmark",
                             label: "Denmark",
                           },
                           {
-                            value: "mapan",
+                            value: "japan",
                             label: "Japan",
                           },
                           {
