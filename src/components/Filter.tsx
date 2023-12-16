@@ -8,10 +8,8 @@ import { Badge } from "./ui/badge";
 import { Separator } from "./ui/separator";
 
 const Buttons = ({
-  handleSubmit,
   dispatch,
 }: {
-  handleSubmit: () => void;
   dispatch: React.Dispatch<{
     type: string;
     value?: string | string[];
@@ -30,7 +28,7 @@ const Buttons = ({
       >
         Reset
       </Button>
-      <Button className="m-auto" variant={"blue"} onClick={handleSubmit}>
+      <Button className="m-auto" variant={"blue"}>
         Search
       </Button>
     </div>
@@ -48,35 +46,17 @@ export default function Filter({
   };
 }) {
   const { state, dispatch } = useFilterContext();
-  const handleSubmit = () => {
-    for (let i = 0; i < components.search.length; i++) {
-      dispatch({
-        type: `ADD_${components.search[i].name.toUpperCase()}`,
-        value: components.search[i].ref.current?.value,
-      });
-      // reset search input
-      components.search[i].ref.current!.value = "";
-    }
-  };
   return (
     <div className="my-16 flex flex-col items-start rounded-lg border border-input p-2">
       {align === 2 && (
         <>
           <div className="flex w-full gap-2">
-            {components.search.map((component: ComponentSearch) => (
-              <Search
-                name={component.name}
-                ref={component.ref}
-                key={component.name}
-                placeholder={component.placeholder}
-              />
-            ))}
-            <Buttons handleSubmit={handleSubmit} dispatch={dispatch} />
+            <Form search={components.search} />
+            <Buttons dispatch={dispatch} />
           </div>
           <Separator orientation="horizontal" />
           <div className="mt-2 flex gap-3">
             {components.dropDown.map((component: DropDownType) => (
-              // ref in dropdown
               <DropDown
                 key={component.name}
                 type={component.name}
@@ -89,7 +69,7 @@ export default function Filter({
 
       {align === 1 && components.search.length === 1 && (
         <div className="flex items-center justify-between p-2 w-full gap-3">
-          <Form search={components.search}/>
+          <Form search={components.search} />
           {components.dropDown.map((component: DropDownType) => (
             <DropDown
               key={component.name}
@@ -97,10 +77,10 @@ export default function Filter({
               options={component.options}
             />
           ))}
-          <Buttons handleSubmit={handleSubmit} dispatch={dispatch} />
+          <Buttons dispatch={dispatch} />
         </div>
       )}
-      <div className="mt-1 px-2 flex flex-wrap gap-3">
+      <div className="px-2 flex flex-wrap gap-3">
         {Object.keys(state).map((key: string) => {
           // Use type assertion to tell TypeScript that the property exists
           if (key === "active") return null;
@@ -116,7 +96,7 @@ export default function Filter({
             return values.map((value: string, index: number) => (
               <Badge
                 variant="round"
-                className="cursor-pointer text-sm hover:bg-black hover:text-white transition"
+                className="cursor-pointer mt-2 text-sm hover:bg-black hover:text-white transition"
                 key={index}
                 onClick={() => {
                   dispatch({
@@ -135,7 +115,7 @@ export default function Filter({
             return (
               <Badge
                 variant="round"
-                className="cursor-pointer text-sm hover:bg-black hover:text-white transition"
+                className="cursor-pointer mt-2 text-sm hover:bg-black hover:text-white transition"
                 key={key}
                 onClick={() => {
                   dispatch({
