@@ -80,7 +80,7 @@ export default function Filter({
           <Buttons dispatch={dispatch} />
         </div>
       )}
-      <div className="mt-1 px-2 flex flex-wrap gap-3">
+      <div className="px-2 flex flex-wrap gap-3">
         {Object.keys(state).map((key: string) => {
           // Use type assertion to tell TypeScript that the property exists
           if (key === "active") return null;
@@ -96,7 +96,7 @@ export default function Filter({
             return values.map((value: string, index: number) => (
               <Badge
                 variant="round"
-                className="cursor-pointer text-sm hover:bg-black hover:text-white transition"
+                className="cursor-pointer mt-2 text-sm hover:bg-black hover:text-white transition"
                 key={index}
                 onClick={() => {
                   dispatch({
@@ -115,7 +115,7 @@ export default function Filter({
             return (
               <Badge
                 variant="round"
-                className="cursor-pointer text-sm hover:bg-black hover:text-white transition"
+                className="cursor-pointer mt-2 text-sm hover:bg-black hover:text-white transition"
                 key={key}
                 onClick={() => {
                   dispatch({
