@@ -6,8 +6,13 @@ export function JobCards() {
     state: { defaultJobs, searchJobs, loading },
   } = useJobContext();
   const jobs = searchJobs;
+
+  const handleClick = () => {
+
+  }
   return (
-    <div className="flex flex-col mt-7">
+    <div className="h-screen">
+    <div className="flex flex-col mt-7" onClick={handleClick}>
       {loading && (
         <div className="flex justify-center items-center">
           <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-2 border-gray-900"></div>
@@ -38,6 +43,7 @@ export function JobCards() {
           ))}
         </>
       )}
+    </div>
     </div>
   );
 }

@@ -6,12 +6,14 @@ type initialStateType = {
   defaultJobs: any[];
   searchJobs: any[];
   loading: boolean;
+  search: boolean;
 };
 
 const initialState = {
   defaultJobs: [],
   searchJobs: [],
   loading: true,
+  search: true
 };
 
 interface JobContextType {
@@ -45,6 +47,11 @@ const jobReducer = (
         searchJobs: action.value,
         loading: false,
       };
+    case "SEARCH_START":
+      return {
+        ...state,
+        search: true,
+      };
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }
@@ -64,6 +71,7 @@ const JobProvider: React.FC<{
       const data = await getJobs();
       dispatch({ type: "GET_JOB", value: data.data });
     }
+
     if (!filter.state.active) getData();
   }, [filter.state]);
 

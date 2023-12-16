@@ -13,16 +13,16 @@ export default function Hero() {
     <div className="bg-white">
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <TopGradients />
-        <div className="mx-auto max-w-5xl py-32 sm:py-48 lg:py-56">
-          <div className="text-center">
-            <Heading>Get Your First Job</Heading>
-            <SubHeading>
-              Empower your career with a dynamic and collaborative work
-              environment.
-            </SubHeading>
-          </div>
+        <div className="mx-auto max-w-5xl py-32 h-screen sm:py-48 lg:py-56">
           <FilterBoxProvider>
             <JobProvider>
+              <div className="text-center">
+                <Heading>Get Your First Job</Heading>
+                <SubHeading>
+                  Empower your career with a dynamic and collaborative work
+                  environment.
+                </SubHeading>
+              </div>
               <Filter
                 align={1}
                 components={{
