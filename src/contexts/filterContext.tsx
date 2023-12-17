@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useReducer } from 'react';
 
 export type FilterBox = {

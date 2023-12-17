@@ -22,7 +22,7 @@ export function Form({ search }: { search: ComponentSearch[] }) {
   };
 
   return (
-    <form id="searchField" className="w-full" onSubmit={handleSubmit(onSubmit)}>
+    <form id="search__field" className="w-full" onSubmit={handleSubmit(onSubmit)}>
       {search.map((component: ComponentSearch) => (
         <Search key={component.name}>
           <Input {...register(component.name)}

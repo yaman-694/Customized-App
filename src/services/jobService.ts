@@ -1,3 +1,5 @@
+'use server';
+
 import { FilterBox } from "@/contexts/filterContext";
 
 const API = "https://solutions-test.recruitcrm.io";
@@ -26,3 +28,10 @@ export const searchJobs = async ({ filter }: { filter: FilterBox }) => {
   const data = await response.json();
   return data;
 };
+
+export const getJobBySlug = async (slug: string) => {
+  const response = await fetch(`${API}/jobs/by-slug/${KEY}?job_slug=${slug}`);
+  const data = await response.json();
+  console.log(data);
+  return data;
+}

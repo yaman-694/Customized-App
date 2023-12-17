@@ -1,3 +1,4 @@
+'use client';
 import { getJobs, searchJobs } from "@/services/jobService";
 import React, { useEffect, useReducer } from "react";
 import { useFilterContext } from "./filterContext";

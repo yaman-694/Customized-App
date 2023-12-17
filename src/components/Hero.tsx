@@ -1,9 +1,7 @@
-"use client";
-
 import { JobProvider } from "@/contexts/jobContext";
 import { FilterBoxProvider } from "../contexts/filterContext";
-import Filter from "./Filter";
-import { JobCards } from "./JobCards";
+import Filter from "./filter/Filter";
+import { JobCards } from "./jobs/JobCards";
 import { TopGradients } from "./ui/Gradients";
 import { Heading } from "./ui/Hero/Heading";
 import { SubHeading } from "./ui/Hero/SubHeading";

@@ -1,11 +1,12 @@
+'use client';
+
 import { useFilterContext } from "@/contexts/filterContext";
 import { ComponentSearch, DropDownType } from "@/interfaces";
-import { Form } from "./filter/Form";
-import { Button } from "./ui/Button";
-import { DropDown } from "./ui/DropDown";
-import { Search } from "./ui/Search";
-import { Badge } from "./ui/badge";
-import { Separator } from "./ui/separator";
+import { Button } from "../ui/Button";
+import { DropDown } from "../ui/DropDown";
+import { Badge } from "../ui/badge";
+import { Separator } from "../ui/separator";
+import { Form } from "./Form";
 
 const Buttons = ({
   dispatch,
