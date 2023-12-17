@@ -50,7 +50,9 @@ export function JobCards() {
                       fontWeight: "font-semibold",
                       fontColor: "text-black",
                     }}
-                    jobDescription={job.description}
+                    jobDescription={{
+                      description: job.custom_fields[0]?.value,
+                    }}
                   />
                 </Link>
               </div>

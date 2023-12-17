@@ -34,9 +34,9 @@ type Props = {
   };
   jobDescription: {
     description: string;
-    font: string;
-    fontWeight: string;
-    fontColor: string;
+    font?: string;
+    fontWeight?: string;
+    fontColor?: string;
     fontFamily?: string;
   };
 };
@@ -74,16 +74,14 @@ const JobCard = React.forwardRef<HTMLDivElement, JobCardProps & Props>(
             <Button variant={"blue"}>Apply Now</Button>
           </div>
         </div>
-        {!jobDescription?.description && (
+        {jobDescription?.description!=='None' ? (
           <>
             <Separator orientation="horizontal" className="mt-5" />
             <div className="text-left text-gray-500 text-base font-medium mt-5 max-md:max-w-full">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the standard dummy text ever since
-              the 1500s
+              {jobDescription.description}
             </div>
           </>
-        )}
+        ): null}
       </div>
     );
   }

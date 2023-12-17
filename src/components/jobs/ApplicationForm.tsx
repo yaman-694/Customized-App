@@ -154,7 +154,7 @@ export function ApplicationForm({
           />
           {inputs.map((item, index) => (
             <>
-              <FormField
+              <FormField key={index}
                 control={form.control}
                 name={item.name}
                 render={({ field }) => (

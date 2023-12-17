@@ -16,7 +16,7 @@ export default function JobHeader({
     <div className="flex justify-between">
       <div className="self-stretch flex flex-col justify-between gap-1 pr-1.5 items-start max-md:max-w-full max-md:flex-wrap">
         <div className="flex flex-col gap-1">
-          <header className="text-slate-700 text-5xl font-bold max-w-[500px] max-md:text-4xl">
+          <header className="text-black text-5xl font-bold max-w-[500px] max-md:text-4xl">
             {name}
           </header>
           <section className="text-slate-400 text-base font-medium whitespace-nowrap">

@@ -1,10 +1,11 @@
+import { BottomGradients } from "../ui/Gradients";
 import { ApplicationForm } from "./ApplicationForm";
 import JobDescContent from "./JobDescContent";
 import JobHeader from "./JobHeader";
 
 export default function JobDescription({ job }: { job: any }) {
   return (
-    <div className="container my-32">
+    <div className="container max-w-5xl my-32 relative isolate lg:px-8">
       <JobHeader
         name={job?.name}
         company={job?.company.company_name}
@@ -28,6 +29,7 @@ export default function JobDescription({ job }: { job: any }) {
           phone_number: "",
         }}
       />
+      <BottomGradients />
     </div>
   );
 }
