@@ -127,7 +127,8 @@ export default function Filter({
                   });
                 }}
               >
-                {values}
+                <span>{values}</span>
+                <Icon name="close" width="14" height="14" iconPath={close} />
               </Badge>
             );
           }

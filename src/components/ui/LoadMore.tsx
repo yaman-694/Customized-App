@@ -13,7 +13,6 @@ export default function LoadMore() {
   } = useJobContext();
   useEffect(() => {
     async function loadMore() {
-      console.log(nextPage, "nextPage")
       const response = await getJobsNextPage(nextPage);
       if (!response) return;
       dispatch({ type: "NEXT_PAGE", value: response });
