@@ -20,10 +20,10 @@ export default function JobHeader({
   formType: any;
 }) {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between flex-wrap gap-6">
       <div className="self-stretch flex flex-col justify-between gap-1 pr-1.5 items-start max-md:max-w-full max-md:flex-wrap">
-        <div className="flex flex-col gap-1">
-          <header className="text-black text-5xl font-bold max-w-[500px] max-md:text-4xl">
+        <div className="flex flex-col gap-1 flex-wrap">
+          <header className="text-black text-5xl font-bold max-w-[500px] max-md:text-3xl">
             {name}
           </header>
           <section className="text-slate-400 text-base font-medium whitespace-nowrap">
@@ -62,7 +62,7 @@ export default function JobHeader({
           }
         }}
       >
-        <Button variant={"blue"} className="text-xl py-6 px-7">
+        <Button variant={"blue"} className="text-sm md:text-xl py-4 px-5 md:py-6 md:px-7">
           Apply Now
         </Button>
       </div>

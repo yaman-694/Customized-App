@@ -142,7 +142,7 @@ const ApplicationForm = React.forwardRef<
         {(formType==='default' || open) && (
           <Form {...form}>
             <div id='application__form' className={cn("", formVariants({ variant, className }))}>
-              <div className="border bg-white bg-opacity-90 border-slate-300 flex flex-col pt-12 pb-7 px-12 rounded-xl border-solid max-md:max-w-full w-1/2 max-md:px-5">
+              <div className="border bg-white border-slate-300 flex flex-col pt-12 pb-7 px-12 rounded-xl border-solid max-md:max-w-full m-5 max-md:px-5">
                 <div className="flex justify-between items-start mb-5">
                   <h2 className="text-2xl font-bold mb-4">Application Form</h2>
 
