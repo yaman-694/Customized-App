@@ -3,31 +3,17 @@ import Link from "next/link";
 
 import { useJobContext } from "@/contexts/jobContext";
 import { JobCard } from "./JobCard";
+import LoadMore from "../ui/LoadMore";
 
 export function JobCards() {
   const {
     state: { searchJobs, loading },
   } = useJobContext();
   const jobs = searchJobs;
-
-  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    // Check if the clicked element is a JobCard or its child
-    const jobCardElement = (event.target as Element).closest(".job-card");
-
-    if (jobCardElement) {
-      // If it's a JobCard, get the id attribute
-      const jobId = jobCardElement.getAttribute("id");
-    }
-  };
-
+  
   return (
     <div className="h-screen">
       <div className="flex flex-col mt-7">
-        {loading && (
-          <div className="flex justify-center items-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-2 border-gray-900"></div>
-          </div>
-        )}
         {!loading && jobs?.length === 0 && (
           <div className="flex justify-center items-center">
             <div className="text-2xl font-semibold text-gray-900">
@@ -60,6 +46,7 @@ export function JobCards() {
           </>
         )}
       </div>
+      <LoadMore />
     </div>
   );
 }

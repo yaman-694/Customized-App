@@ -7,6 +7,8 @@ import { DropDown } from "../ui/DropDown";
 import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
 import { Form } from "./Form";
+import Icon from "../ui/Icon";
+import close from "@/../public/icons/close.svg";
 
 const Buttons = ({
   dispatch,
@@ -97,7 +99,7 @@ export default function Filter({
             return values.map((value: string, index: number) => (
               <Badge
                 variant="round"
-                className="cursor-pointer mt-2 text-sm hover:bg-black hover:text-white transition"
+                className="cursor-pointer mt-2 text-sm hover:bg-slate-100  transition flex gap-1 items-center"
                 key={index}
                 onClick={() => {
                   dispatch({
@@ -106,7 +108,7 @@ export default function Filter({
                   });
                 }}
               >
-                {value}
+                <span>{value}</span><Icon name="close" width="14" height="14" iconPath={close} />
               </Badge>
             ));
           }
@@ -116,7 +118,7 @@ export default function Filter({
             return (
               <Badge
                 variant="round"
-                className="cursor-pointer mt-2 text-sm hover:bg-black hover:text-white transition"
+                className="cursor-pointer mt-2 text-sm hover:bg-slate-100  transition"
                 key={key}
                 onClick={() => {
                   dispatch({
