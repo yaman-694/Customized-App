@@ -1,5 +1,5 @@
-'use client';
-import React, { useEffect, useReducer } from 'react';
+"use client";
+import React, { useReducer } from "react";
 
 export type FilterBox = {
   country?: string[];
@@ -16,7 +16,7 @@ interface FilterBoxContextType {
 }
 
 const initialState = {
-  jobName: '',
+  jobName: "",
   skill: [],
   country: [],
   role: [],
@@ -28,10 +28,10 @@ const FilterBoxContext = React.createContext({} as FilterBoxContextType);
 
 const filterBoxReducer = (
   state: FilterBox,
-  action: { type: string; value?: string | string[] },
+  action: { type: string; value?: string | string[] }
 ): FilterBox => {
   switch (action.type) {
-    case 'ADD_COUNTRY':
+    case "ADD_COUNTRY":
       return {
         ...state,
         country: action.value
@@ -41,7 +41,7 @@ const filterBoxReducer = (
           : undefined,
         active: true,
       };
-    case 'ADD_ROLE':
+    case "ADD_ROLE":
       return {
         ...state,
         role: action.value
@@ -51,7 +51,7 @@ const filterBoxReducer = (
           : undefined,
         active: true,
       };
-    case 'ADD_CITY':
+    case "ADD_CITY":
       return {
         ...state,
         city: action.value
@@ -61,7 +61,7 @@ const filterBoxReducer = (
           : undefined,
         active: true,
       };
-    case 'ADD_SKILL':
+    case "ADD_SKILL":
       return {
         ...state,
         skill: action.value
@@ -71,45 +71,43 @@ const filterBoxReducer = (
           : undefined,
         active: true,
       };
-    case 'ADD_JOB_NAME':
+    case "ADD_JOB_NAME":
       return {
         ...state,
         jobName: action.value,
         active: true,
       };
-    case 'REMOVE_COUNTRY':
+    case "REMOVE_COUNTRY":
       return {
         ...state,
-        country: state.country?.filter(
-          (country) => country !== action.value,
-        ),
+        country: state.country?.filter((country) => country !== action.value),
         active: true,
       };
-    case 'REMOVE_ROLE':
+    case "REMOVE_ROLE":
       return {
         ...state,
         role: state.role?.filter((role) => role !== action.value),
         active: true,
       };
-    case 'REMOVE_CITY':
+    case "REMOVE_CITY":
       return {
         ...state,
         city: state.city?.filter((city) => city !== action.value),
         active: true,
       };
-    case 'REMOVE_SKILL':
+    case "REMOVE_SKILL":
       return {
         ...state,
         skill: state.skill?.filter((skill) => skill !== action.value),
         active: true,
       };
-    case 'REMOVE_JOBNAME':
+    case "REMOVE_JOBNAME":
       return {
         ...state,
-        jobName: '',
+        jobName: "",
         active: true,
       };
-    case 'RESET':
+    case "RESET":
       return {
         ...initialState,
         active: false,
@@ -123,10 +121,6 @@ const FilterBoxProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const [state, dispatch] = useReducer(filterBoxReducer, initialState);
-
-  useEffect(() => {
-    console.log(state);
-  },[state])
 
   return (
     <FilterBoxContext.Provider
@@ -143,7 +137,7 @@ const FilterBoxProvider: React.FC<{
 function useFilterContext() {
   const context = React.useContext(FilterBoxContext);
   if (context === undefined) {
-    throw new Error('useFilterBox must be used within a FilterBoxProvider');
+    throw new Error("useFilterBox must be used within a FilterBoxProvider");
   }
   return context;
 }

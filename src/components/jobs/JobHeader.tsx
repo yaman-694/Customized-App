@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "../ui/Button";
 import { Badge } from "../ui/badge";
 
@@ -6,11 +7,17 @@ export default function JobHeader({
   company,
   jobType,
   type,
+  open,
+  setOpen,
+  formType,
 }: {
   name: string;
   company: string;
   jobType: string;
   type: string;
+  open: boolean;
+  setOpen: any;
+  formType: any;
 }) {
   return (
     <div className="flex justify-between">
@@ -26,7 +33,7 @@ export default function JobHeader({
         <div className="flex items-stretch justify-between gap-4 mt-5">
           <div className="flex grow basis-[0%] flex-col justify-center items-stretch">
             <Badge
-              className="justify-center text-gray-700 text-center text-xs whitespace-nowrap rounded items-stretch px-2.5 py-[5px]"
+              className="justify-center text-gray-700 text-center text-sm whitespace-nowrap rounded items-stretch px-2.5 py-[5px]"
               variant={"secondary"}
             >
               {jobType}
@@ -34,7 +41,7 @@ export default function JobHeader({
           </div>
           <div className="flex grow basis-[0%] flex-col justify-center items-stretch">
             <Badge
-              className="justify-center text-gray-700 text-center text-xs whitespace-nowrap rounded items-stretch px-2.5 py-[5px]"
+              className="justify-center text-gray-700 text-center text-sm whitespace-nowrap rounded items-stretch px-2.5 py-[5px]"
               variant={"secondary"}
             >
               {type}
@@ -42,7 +49,19 @@ export default function JobHeader({
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-stretch">
+      <div
+        className="flex flex-col justify-center items-stretch"
+        onClick={() => {
+          if (formType === "fixed") setOpen(true);
+          else {
+            const applicationFormElement =
+              document.getElementById("application__form");
+            if (applicationFormElement) {
+              applicationFormElement.scrollIntoView({ behavior: "smooth" });
+            }
+          }
+        }}
+      >
         <Button variant={"blue"} className="text-xl py-6 px-7">
           Apply Now
         </Button>

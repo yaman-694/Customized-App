@@ -25,21 +25,23 @@ export function JobCards() {
           <>
             {jobs.map((job) => (
               <div className="mb-3" key={job.job_id}>
-                <Link href={`/${job.job_slug}`}>
-                  <JobCard
-                    className="job-card"
-                    id={job.job_slug} // Set the 'id' attribute here
-                    key={job.job_id}
-                    jobName={{
-                      name: job.name,
-                      font: "text-3xl",
-                      fontWeight: "font-semibold",
-                      fontColor: "text-black",
-                    }}
-                    jobDescription={{
-                      description: job.custom_fields[0]?.value,
-                    }}
-                  />
+                <Link href={`/${job.job_slug}`} passHref legacyBehavior>
+                  <a target="_blank">
+                    <JobCard
+                      className="job-card"
+                      id={job.job_slug} // Set the 'id' attribute here
+                      key={job.job_id}
+                      jobName={{
+                        name: job.name,
+                        font: "text-3xl",
+                        fontWeight: "font-semibold",
+                        fontColor: "text-black",
+                      }}
+                      jobDescription={{
+                        description: job.custom_fields[0]?.value,
+                      }}
+                    />
+                  </a>
                 </Link>
               </div>
             ))}

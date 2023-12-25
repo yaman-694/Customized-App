@@ -94,7 +94,6 @@ const JobProvider: React.FC<{
     async function getData() {
       dispatch({ type: "GET_START" });
       const data = await searchJobs({ filter: filter.state });
-      console.log(data);
       dispatch({ type: "SEARCH_JOB", value: data });
     }
     if(filter.state.active)
