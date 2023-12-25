@@ -20,10 +20,12 @@ import { DropDownOptionType } from "@/interfaces";
 
 export function DropDown({
   type,
-  options
+  options,
+  className,
 }: {
   type: DropDownOptionType["type"];
   options: { value: string; label: string }[];
+  className?: string;
 }) {
   const [open, setOpen] = React.useState(false);
   const { state, dispatch } = useFilterContext();
@@ -43,7 +45,7 @@ export function DropDown({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className={cn('justify-between', className)}
         >
           {value?.length != 0
             ? `${value.length + " " + type} selected`

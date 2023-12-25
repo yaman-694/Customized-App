@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
+import close from "@/../public/icons/close.svg";
 import { useFilterContext } from "@/contexts/filterContext";
 import { ComponentSearch, DropDownType } from "@/interfaces";
 import { Button } from "../ui/Button";
 import { DropDown } from "../ui/DropDown";
+import Icon from "../ui/Icon";
 import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
 import { Form } from "./Form";
-import Icon from "../ui/Icon";
-import close from "@/../public/icons/close.svg";
 
 const Buttons = ({
   dispatch,
@@ -19,9 +19,8 @@ const Buttons = ({
   }>;
 }) => {
   return (
-    <div className="flex">
+    <div className="flex w-full md:w-[200px] justify-between">
       <Button
-        className="m-auto"
         variant={"wt_bg"}
         onClick={() => {
           dispatch({
@@ -31,7 +30,7 @@ const Buttons = ({
       >
         Reset
       </Button>
-      <Button className="m-auto" variant={"blue"}>
+      <Button variant={"blue"} className="w-full">
         Search
       </Button>
     </div>
@@ -51,6 +50,22 @@ export default function Filter({
   const { state, dispatch } = useFilterContext();
   return (
     <div className="my-16 flex flex-col items-start rounded-lg border border-input p-2">
+      {align === 1 && components.search.length === 1 && (
+        <div className="flex flex-col items-start justify-between p-2 w-full gap-3 md:flex-row md:items-center">
+          <Form search={components.search} />
+          <div className="flex items-center flex-wrap gap-3 w-full justify-between">
+            {components.dropDown.map((component: DropDownType) => (
+              <DropDown
+                key={component.name}
+                type={component.name}
+                options={component.options}
+                className="w-[150px] md:w-[200px] flex-1"
+              />
+            ))}
+          </div>
+          <Buttons dispatch={dispatch} />
+        </div>
+      )}
       {align === 2 && (
         <>
           <div className="flex w-full gap-2">
@@ -68,20 +83,6 @@ export default function Filter({
             ))}
           </div>
         </>
-      )}
-
-      {align === 1 && components.search.length === 1 && (
-        <div className="flex items-center justify-between p-2 w-full gap-3">
-          <Form search={components.search} />
-          {components.dropDown.map((component: DropDownType) => (
-            <DropDown
-              key={component.name}
-              type={component.name}
-              options={component.options}
-            />
-          ))}
-          <Buttons dispatch={dispatch} />
-        </div>
       )}
       <div className="px-2 flex flex-wrap gap-3">
         {Object.keys(state).map((key: string) => {
@@ -108,7 +109,8 @@ export default function Filter({
                   });
                 }}
               >
-                <span>{value}</span><Icon name="close" width="14" height="14" iconPath={close} />
+                <span>{value}</span>
+                <Icon name="close" width="14" height="14" iconPath={close} />
               </Badge>
             ));
           }

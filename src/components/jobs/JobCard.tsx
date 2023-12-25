@@ -6,7 +6,7 @@ import { Button } from "../ui/Button";
 import { Separator } from "../ui/separator";
 
 const JobCardVariants = cva(
-  "bg-white flex w-full flex-col items-stretch px-11 py-10 rounded-lg max-md:max-w-full max-md:my-10 max-md:px-5",
+  "bg-white flex w-full flex-col items-stretch px-11 py-5 md:py-10 rounded-lg max-md:max-w-full max-md:px-5",
   {
     variants: {
       variant: {
@@ -49,7 +49,7 @@ const JobCard = React.forwardRef<HTMLDivElement, JobCardProps & Props>(
         ref={ref}
         {...props}
       >
-        <div className="flex items-stretch justify-between gap-5 px-px max-md:max-w-full max-md:flex-wrap">
+        <div className="flex justify-between gap-5 px-px max-md:max-w-full max-md:flex-wrap">
           <div className="flex flex-col items-stretch">
             <header
               className={`${jobName.fontFamily} text-left justify-center ${jobName.fontColor} ${jobName.font} ${jobName.fontWeight}`}
@@ -61,7 +61,7 @@ const JobCard = React.forwardRef<HTMLDivElement, JobCardProps & Props>(
                 (item, index) => (
                   <Badge
                     key={index}
-                    className="justify-center text-black text-center text-xs whitespace-nowrap rounded items-stretch px-2.5 py-[5px] border-[1px] border-solid border-black"
+                    className="justify-center text-black text-center text-[10px] md:text-xs whitespace-nowrap rounded items-stretch px-2.5 py-[5px] border-[1px] border-solid border-black"
                     variant={"round"}
                   >
                     {item}
@@ -70,18 +70,20 @@ const JobCard = React.forwardRef<HTMLDivElement, JobCardProps & Props>(
               )}
             </div>
           </div>
-          <div className="flex flex-col justify-center items-stretch">
+          <div className="flex">
             <Button variant={"blue"}>Apply Now</Button>
           </div>
         </div>
-        {jobDescription?.description!=='None' ? (
+        {jobDescription?.description !== "None" ? (
           <>
             <Separator orientation="horizontal" className="mt-5" />
-            <div className="text-left text-gray-500 text-base font-medium mt-5 max-md:max-w-full">
+            <div
+              className={`text-left ${jobDescription.font} ${jobDescription.fontColor} text-base ${jobDescription.fontWeight} mt-5 max-md:max-w-full`}
+            >
               {jobDescription.description}
             </div>
           </>
-        ): null}
+        ) : null}
       </div>
     );
   }
