@@ -12,11 +12,11 @@ import Image from "next/image";
 export default async function Hero() {
   return (
     <div className="bg-white">
-      <div className="relative isolate px-6 pt-14 lg:px-8">
+      <div className="relative isolate px-6 lg:px-8">
         <div className="mx-auto max-w-5xl ">
           <FilterBoxProvider>
             <JobProvider>
-              <div className="flex flex-col gap-3 md:flex-row md:items-center">
+              <div className="flex flex-col gap-3 md:flex-row md:items-center my-36">
                 <div className="text-left">
                   <Heading className="font-serif">
                     Join Your new <span className="text-rose-500">Company</span>

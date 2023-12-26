@@ -1,9 +1,9 @@
 "use client";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 import { useJobContext } from "@/contexts/jobContext";
 import { getJobsNextPage } from "@/services/jobService";
-import { useEffect } from "react";
-import { useInView } from "react-intersection-observer";
 
 export default function LoadMore() {
   const { ref, inView } = useInView();

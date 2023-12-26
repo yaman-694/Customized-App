@@ -1,4 +1,5 @@
 "use client";
+import { useInView } from "react-intersection-observer";
 
 import close from "@/../public/icons/close.svg";
 import { useFilterContext } from "@/contexts/filterContext";
@@ -10,6 +11,7 @@ import { DropDown } from "../ui/DropDown";
 import Icon from "../ui/Icon";
 import { Separator } from "../ui/Separator";
 import { Form } from "./Form";
+import { use, useEffect } from "react";
 
 const Buttons = ({
   dispatch,
@@ -57,9 +59,12 @@ export default function Filter({
     dropDown: DropDownType[];
   };
 }) {
+  
+  const { ref, inView } = useInView();
   const { state, dispatch } = useFilterContext();
+
   return (
-    <div
+    <div ref={ref} id='filter'
       className={cn(
         "my-16 flex flex-col items-start rounded-lg border border-input p-2",
         className
