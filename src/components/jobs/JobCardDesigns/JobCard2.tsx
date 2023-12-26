@@ -1,12 +1,10 @@
 import applyIcon from "@/../public/icons/apply.svg";
 import Icon from "@/components/ui/Icon";
+import { JobCardPropsType } from "@/interfaces";
 import { cn } from "@/lib/utils";
 import React from "react";
-import { Badge } from "../../ui/badge";
+import { Badge } from "../../ui/Badge";
 import { Button } from "../../ui/Button";
-import { JobCardPropsType } from "@/interfaces";
-
-
 
 const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
   ({ className, jobName, jobDescription, ...props }, ref) => {

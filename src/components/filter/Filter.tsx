@@ -3,19 +3,19 @@
 import close from "@/../public/icons/close.svg";
 import { useFilterContext } from "@/contexts/filterContext";
 import { ButtonVariant, ComponentSearch, DropDownType } from "@/interfaces";
+import { cn } from "@/lib/utils";
+import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
 import { DropDown } from "../ui/DropDown";
 import Icon from "../ui/Icon";
-import { Badge } from "../ui/badge";
-import { Separator } from "../ui/separator";
+import { Separator } from "../ui/Separator";
 import { Form } from "./Form";
-import { cn } from "@/lib/utils";
 
 const Buttons = ({
   dispatch,
   variant,
 }: {
-  variant?: ButtonVariant['type'];
+  variant?: ButtonVariant["type"];
   dispatch: React.Dispatch<{
     type: string;
     value?: string | string[];
@@ -33,7 +33,10 @@ const Buttons = ({
       >
         Reset
       </Button>
-      <Button variant={variant ? variant : "blue"} className={`w-full ${variant==='destructive' ? 'rounded-none': ''}`}>
+      <Button
+        variant={variant ? variant : "blue"}
+        className={`w-full ${variant === "destructive" ? "rounded-none" : ""}`}
+      >
         Search
       </Button>
     </div>

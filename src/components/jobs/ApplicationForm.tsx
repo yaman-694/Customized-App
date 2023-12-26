@@ -16,12 +16,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/components/ui/Form";
 import { Input } from "@/components/ui/Input";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import React, { Children } from "react";
-import { Checkbox } from "../ui/checkbox";
+import { Checkbox } from "../ui/Checkbox";
 import Icon from "../ui/Icon";
 
 const FormSchema = z.object({

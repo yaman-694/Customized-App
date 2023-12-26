@@ -4,8 +4,8 @@ import { ApplicationForm } from "@/components/jobs/ApplicationForm";
 import JobDescContent from "@/components/jobs/JobDescContent";
 import JobDescription from "@/components/jobs/JobDescription";
 import JobHeader from "@/components/jobs/JobHeader";
+import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/badge";
 import { getJobBySlug } from "@/services/jobService";
 import React, { useEffect } from "react";
 

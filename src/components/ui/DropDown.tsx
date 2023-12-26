@@ -8,12 +8,12 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "@/components/ui/command";
+} from "@/components/ui/Command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/components/ui/Popover";
 import { useFilterContext } from "@/contexts/filterContext";
 import { cn } from "@/lib/utils";
 import { DropDownOptionType } from "@/interfaces";

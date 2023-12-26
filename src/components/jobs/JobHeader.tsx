@@ -1,8 +1,5 @@
 import { JobDescriptionHeaderType } from "@/interfaces";
 import { Button } from "../ui/Button";
-import { Badge } from "../ui/badge";
-
-
 
 export default function JobHeader({
   name,
