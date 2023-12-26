@@ -33,7 +33,7 @@ const Buttons = ({
       >
         Reset
       </Button>
-      <Button variant={variant ? variant : "blue"} className="w-full">
+      <Button variant={variant ? variant : "blue"} className={`w-full ${variant==='destructive' ? 'rounded-none': ''}`}>
         Search
       </Button>
     </div>
@@ -71,7 +71,10 @@ export default function Filter({
                 key={component.name}
                 type={component.name}
                 options={component.options}
-                className="w-[150px] md:w-[200px] flex-1"
+                className={cn(
+                  "w-[130px] md:w-[200px] flex-1",
+                  component.className
+                )}
               />
             ))}
           </div>
@@ -82,15 +85,19 @@ export default function Filter({
         <>
           <div className="flex w-full gap-2">
             <Form search={components.search} />
-            <Buttons dispatch={dispatch} />
+            <Buttons dispatch={dispatch} variant={buttonVariant} />
           </div>
           <Separator orientation="horizontal" />
-          <div className="mt-2 flex gap-3">
+          <div className="mt-2 flex justify-between gap-1 w-full md:gap-3 md:justify-start">
             {components.dropDown.map((component: DropDownType) => (
               <DropDown
                 key={component.name}
                 type={component.name}
                 options={component.options}
+                className={cn(
+                  "w-[140px] md:w-[200px] flex-1",
+                  component.className
+                )}
               />
             ))}
           </div>
@@ -112,7 +119,7 @@ export default function Filter({
             return values.map((value: string, index: number) => (
               <Badge
                 variant="round"
-                className="cursor-pointer mt-2 text-sm hover:bg-slate-100  transition flex gap-1 items-center"
+                className="cursor-pointer mt-2 text-sm hover:bg-slate-100 transition flex gap-1 items-center"
                 key={index}
                 onClick={() => {
                   dispatch({

@@ -4,6 +4,7 @@ import { ApplicationForm } from "@/components/jobs/ApplicationForm";
 import JobDescContent from "@/components/jobs/JobDescContent";
 import JobDescription from "@/components/jobs/JobDescription";
 import JobHeader from "@/components/jobs/JobHeader";
+import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/badge";
 import { getJobBySlug } from "@/services/jobService";
 import React, { useEffect } from "react";
@@ -83,7 +84,15 @@ export default function JobDescriptionPage({
           defaultInputs={{
             phone_number: "",
           }}
-        />
+        >
+          <Button
+            className="row-end-auto col-span-2 justify-self-end mt-5"
+            type="submit"
+            variant={"blue"}
+          >
+            Apply Now
+          </Button>
+        </ApplicationForm>
       </JobDescription>
     </>
   );

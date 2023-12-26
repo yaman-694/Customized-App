@@ -29,7 +29,7 @@ const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
             {jobDescription?.description !== "None" ? (
               <>
                 <div
-                  className={`text-left ${jobDescription.font} ${jobDescription.fontColor} text-base ${jobDescription.fontWeight} ${jobDescription.fontFamily} mt-5 max-md:max-w-full`}
+                  className={`text-left ${jobDescription.font} ${jobDescription.fontColor} text-base ${jobDescription.fontWeight} ${jobDescription.fontFamily} mt-5 max-md:max-w-full pr-2`}
                 >
                   {jobDescription.description}
                 </div>
@@ -49,7 +49,7 @@ const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
               )}
             </div>
           </div>
-          <div className="flex">
+          <div className="hidden md:flex">
             <Button variant={"wt_bg"} className="font-bold text-md">
               Apply Now
               <Icon

@@ -11,6 +11,7 @@ export type ComponentSearch = {
 export type DropDownType = {
   name: DropDownOptionType["type"];
   options: option[];
+  className?: string;
 };
 
 export type DropDownOptionType = {

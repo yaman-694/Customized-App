@@ -1,12 +1,12 @@
+"use server";
 import { JobProvider } from "@/contexts/jobContext";
 import { FilterBoxProvider } from "../contexts/filterContext";
 import Filter from "./filter/Filter";
 import { JobCards } from "./jobs/JobCards";
-import { TopGradients } from "./ui/Gradients";
 import { Heading } from "./ui/Hero/Heading";
 import { SubHeading } from "./ui/Hero/SubHeading";
 
-export default function Hero() {
+export default async function Hero() {
   return (
     <div className="bg-white">
       <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -36,6 +36,7 @@ export default function Hero() {
                   dropDown: [
                     {
                       name: "country",
+                      className: "border-2 rounded-none",
                       options: [
                         {
                           value: "Mexico",
@@ -57,6 +58,7 @@ export default function Hero() {
                     },
                     {
                       name: "city",
+                      className: "border-2 rounded-none",
                       options: [
                         {
                           value: "Oaxaca",
@@ -91,7 +93,7 @@ export default function Hero() {
                   font: "text-sm md:text-lg",
                   fontWeight: "font-normal",
                   fontColor: "text-gray-900",
-                  fontFamily: "font-sans2"
+                  fontFamily: "font-sans2",
                 }}
                 clientId="client2"
               />

@@ -20,7 +20,7 @@ import {
 import { Input } from "@/components/ui/Input";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { Children } from "react";
 import { Checkbox } from "../ui/checkbox";
 import Icon from "../ui/Icon";
 
@@ -112,6 +112,7 @@ const ApplicationForm = React.forwardRef<
       open,
       setOpen,
       formType,
+      children
     },
     ref
   ) => {
@@ -265,13 +266,7 @@ const ApplicationForm = React.forwardRef<
                       </div>
                     ))}
                   </div>
-                  <Button
-                    className="row-end-auto col-span-2 justify-self-end mt-5"
-                    type="submit"
-                    variant={"blue"}
-                  >
-                    Apply Now
-                  </Button>
+                  {children}
                 </form>
               </div>
             </div>

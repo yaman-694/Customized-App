@@ -4,6 +4,7 @@ import { ApplicationForm } from "@/components/jobs/ApplicationForm";
 import JobDescContent from "@/components/jobs/JobDescContent";
 import JobDescription from "@/components/jobs/JobDescription";
 import JobHeader from "@/components/jobs/JobHeader";
+import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/badge";
 import { getJobBySlug } from "@/services/jobService";
 import React, { useEffect } from "react";
@@ -60,7 +61,7 @@ export default function JobDescriptionPage({
           </div>
         </JobHeader>
         <JobDescContent>
-          <div className="flex justify-center min-h-[500px] text-slate-600 text-md md:text-lg leading-7 bg-slate-100 self-stretch items-stretch my-16 px-12 py-12 rounded-xl max-md:max-w-full max-md:mt-10 max-md:px-5">
+          <div className="flex justify-center min-h-[500px] text-slate-600 text-md md:text-lg leading-7 bg-slate-100 self-stretch items-stretch my-16 px-12 py-12 max-md:max-w-full max-md:mt-10 max-md:px-5">
             <p
               dangerouslySetInnerHTML={{ __html: job?.job_description_text }}
             ></p>
@@ -85,7 +86,15 @@ export default function JobDescriptionPage({
           defaultInputs={{
             phone_number: "",
           }}
-        />
+        >
+          <Button
+            className="row-end-auto rounded-none col-span-2 justify-self-end mt-5"
+            type="submit"
+            variant={"destructive"}
+          >
+            Apply Now
+          </Button>
+        </ApplicationForm>
       </JobDescription>
     </>
   );
