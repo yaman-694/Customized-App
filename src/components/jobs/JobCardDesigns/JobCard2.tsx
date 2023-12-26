@@ -13,13 +13,18 @@ const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
     return (
       <div
         className={cn(
-          "bg-white flex w-full h-full flex-col items-stretch px-11 py-5 md:py-10 max-md:max-w-full max-md:px-5 border-2 border-gray-900 rounded-none hover:shadow-black_drop transistion-all duration-300",
+          "bg-white flex w-full h-full flex-col items-stretch px-11 py-5 md:py-10 max-md:max-w-full max-md:px-5 border-2 border-gray-900 rounded-none hover:shadow-black_drop md:hover:shadow-black_drop_md transistion-all duration-300",
           className
         )}
         ref={ref}
         {...props}
       >
-        <div className={cn("flex justify-between flex-wrap gap-5 px-px max-md:max-w-full max-md:flex-wrap", className)}>
+        <div
+          className={cn(
+            "flex justify-between flex-wrap gap-5 px-px max-md:max-w-full max-md:flex-wrap",
+            className
+          )}
+        >
           <div className="flex flex-col items-stretch">
             <header
               className={`${jobName.fontFamily} text-left justify-center ${jobName.fontColor} ${jobName.font} ${jobName.fontWeight}`}
@@ -50,7 +55,10 @@ const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
             </div>
           </div>
           <div className="hidden md:flex">
-            <Button variant={"wt_bg"} className="font-bold text-md self-end p-0">
+            <Button
+              variant={"wt_bg"}
+              className="font-bold text-md self-end p-0"
+            >
               Apply Now
               <Icon
                 iconPath={applyIcon}
