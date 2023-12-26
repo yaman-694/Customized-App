@@ -83,12 +83,12 @@ export default function Filter({
       )}
       {align === 2 && (
         <>
-          <div className="flex w-full gap-2">
+          <div className="flex w-full gap-2 mb-3">
             <Form search={components.search} />
             <Buttons dispatch={dispatch} variant={buttonVariant} />
           </div>
           <Separator orientation="horizontal" />
-          <div className="mt-2 flex justify-between gap-1 w-full md:gap-3 md:justify-start">
+          <div className="mt-4 flex flex-wrap justify-between gap-1 w-full md:gap-3 md:justify-start">
             {components.dropDown.map((component: DropDownType) => (
               <DropDown
                 key={component.name}

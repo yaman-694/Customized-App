@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      boxShadow: {
+        'black_drop': '10px 10px 0px 2px rgba(0, 0, 0)',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

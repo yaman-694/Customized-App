@@ -77,6 +77,7 @@ export default function Hero() {
                 }}
               />
               <JobCards
+                clientId="client1"
                 jobNameStyle={{
                   font: "text-2xl md:text-3xl",
                   fontWeight: "font-semibold",

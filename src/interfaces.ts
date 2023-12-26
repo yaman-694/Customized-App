@@ -54,6 +54,7 @@ export type JobCardPropsType = {
 export type JobCardsPropsType = {
   jobCardType?: string;
   clientId: string;
+  className?: string;
   jobNameStyle?: {
     font?: string;
     fontWeight?: string;
@@ -66,6 +67,7 @@ export type JobCardsPropsType = {
     fontColor?: string;
     fontFamily?: string;
   };
+  display?: string;
 };
 
 

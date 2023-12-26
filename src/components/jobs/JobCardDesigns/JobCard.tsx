@@ -7,7 +7,7 @@ import { Separator } from "../../ui/separator";
 import { JobCardPropsType } from "@/interfaces";
 
 const JobCardVariants = cva(
-  "bg-white flex w-full flex-col items-stretch px-11 py-5 md:py-10 rounded-lg max-md:max-w-full max-md:px-5",
+  "bg-white flex w-full flex-col items-stretch px-11 py-5 md:py-10 rounded-lg max-md:max-w-full max-md:px-5 transition-all duration-300",
   {
     variants: {
       variant: {
@@ -25,13 +25,11 @@ export interface JobCardProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof JobCardVariants> {}
 
-
-
 const JobCard = React.forwardRef<HTMLDivElement, JobCardProps & JobCardPropsType>(
   ({ className, variant, jobName, jobDescription, ...props }, ref) => {
     return (
       <div
-        className={cn(JobCardVariants({ variant, className }))}
+        className={cn('hover:shadow-lg',JobCardVariants({ variant, className }))}
         ref={ref}
         {...props}
       >

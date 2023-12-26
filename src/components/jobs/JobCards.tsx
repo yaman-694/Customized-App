@@ -6,12 +6,15 @@ import LoadMore from "../ui/LoadMore";
 import { JobCard } from "./JobCardDesigns/JobCard";
 import { JobCard2 } from "./JobCardDesigns/JobCard2";
 import { JobCardsPropsType } from "@/interfaces";
+import { cn } from "@/lib/utils";
 
 export const JobCards: React.FC<JobCardsPropsType> = ({
   jobCardType,
   jobNameStyle,
   descriptionStyle,
-  clientId
+  clientId,
+  display,
+  className
 }) => {
   const {
     state: { searchJobs, loading },
@@ -32,10 +35,14 @@ export const JobCards: React.FC<JobCardsPropsType> = ({
           </div>
         )}
         {!loading && jobs && jobs.length > 0 && (
-          <>
+          <div className={cn("mb-3 md:mb-5", className)}>
             {jobs.map((job) => (
-              <div className="mb-3 md:mb-5" key={job.job_id}>
-                <Link href={`/${clientId}/${job.job_slug}`} passHref legacyBehavior>
+              <div className={"mb-3 md:mb-5"} key={job.job_id}>
+                <Link
+                  href={`/${clientId}/${job.job_slug}`}
+                  passHref
+                  legacyBehavior
+                >
                   <a target="_blank">
                     <JobCardDesign
                       id={job.job_slug}
@@ -48,12 +55,13 @@ export const JobCards: React.FC<JobCardsPropsType> = ({
                         description: job.custom_fields[0]?.value,
                         ...descriptionStyle,
                       }}
+                      className={display}
                     />
                   </a>
                 </Link>
               </div>
             ))}
-          </>
+          </div>
         )}
       </div>
       <LoadMore />
