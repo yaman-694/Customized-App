@@ -16,12 +16,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/components/ui/Form";
 import { Input } from "@/components/ui/Input";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import React from "react";
-import { Checkbox } from "../ui/checkbox";
+import React, { Children } from "react";
+import { Checkbox } from "../ui/Checkbox";
 import Icon from "../ui/Icon";
 
 const FormSchema = z.object({
@@ -112,6 +112,7 @@ const ApplicationForm = React.forwardRef<
       open,
       setOpen,
       formType,
+      children
     },
     ref
   ) => {
@@ -265,13 +266,7 @@ const ApplicationForm = React.forwardRef<
                       </div>
                     ))}
                   </div>
-                  <Button
-                    className="row-end-auto col-span-2 justify-self-end mt-5"
-                    type="submit"
-                    variant={"blue"}
-                  >
-                    Apply Now
-                  </Button>
+                  {children}
                 </form>
               </div>
             </div>

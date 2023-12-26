@@ -26,7 +26,7 @@ export function Form({ search }: { search: ComponentSearch[] }) {
       {search.map((component: ComponentSearch) => (
         <Search key={component.name}>
           <Input {...register(component.name)}
-          variant={"withOutline"} placeholder={component.placeholder}  />
+          variant={"withOutline"} placeholder={component.placeholder}  className="flex-1"/>
         </Search>
       ))}
     </form>

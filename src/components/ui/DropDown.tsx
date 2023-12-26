@@ -8,12 +8,12 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "@/components/ui/command";
+} from "@/components/ui/Command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/components/ui/Popover";
 import { useFilterContext } from "@/contexts/filterContext";
 import { cn } from "@/lib/utils";
 import { DropDownOptionType } from "@/interfaces";
@@ -50,7 +50,7 @@ export function DropDown({
           {value?.length != 0
             ? `${value.length + " " + type} selected`
             : `Select ${type}`}
-          <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <CaretSortIcon className="hidden md:block ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
