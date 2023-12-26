@@ -2,17 +2,20 @@
 
 import close from "@/../public/icons/close.svg";
 import { useFilterContext } from "@/contexts/filterContext";
-import { ComponentSearch, DropDownType } from "@/interfaces";
+import { ButtonVariant, ComponentSearch, DropDownType } from "@/interfaces";
 import { Button } from "../ui/Button";
 import { DropDown } from "../ui/DropDown";
 import Icon from "../ui/Icon";
 import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
 import { Form } from "./Form";
+import { cn } from "@/lib/utils";
 
 const Buttons = ({
   dispatch,
+  variant,
 }: {
+  variant?: ButtonVariant['type'];
   dispatch: React.Dispatch<{
     type: string;
     value?: string | string[];
@@ -30,7 +33,7 @@ const Buttons = ({
       >
         Reset
       </Button>
-      <Button variant={"blue"} className="w-full">
+      <Button variant={variant ? variant : "blue"} className="w-full">
         Search
       </Button>
     </div>
@@ -40,7 +43,11 @@ const Buttons = ({
 export default function Filter({
   components,
   align,
+  className,
+  buttonVariant,
 }: {
+  className?: string;
+  buttonVariant?: ButtonVariant["type"];
   align: 1 | 2;
   components: {
     search: ComponentSearch[];
@@ -49,7 +56,12 @@ export default function Filter({
 }) {
   const { state, dispatch } = useFilterContext();
   return (
-    <div className="my-16 flex flex-col items-start rounded-lg border border-input p-2">
+    <div
+      className={cn(
+        "my-16 flex flex-col items-start rounded-lg border border-input p-2",
+        className
+      )}
+    >
       {align === 1 && components.search.length === 1 && (
         <div className="flex flex-col items-start justify-between p-2 w-full gap-3 md:flex-row md:items-center">
           <Form search={components.search} />
@@ -63,7 +75,7 @@ export default function Filter({
               />
             ))}
           </div>
-          <Buttons dispatch={dispatch} />
+          <Buttons dispatch={dispatch} variant={buttonVariant} />
         </div>
       )}
       {align === 2 && (

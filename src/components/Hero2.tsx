@@ -10,19 +10,22 @@ export default function Hero() {
   return (
     <div className="bg-white">
       <div className="relative isolate px-6 pt-14 lg:px-8">
-        <TopGradients />
         <div className="mx-auto max-w-5xl py-32 h-screen sm:py-48 lg:py-56">
           <FilterBoxProvider>
             <JobProvider>
               <div className="text-center">
-                <Heading>Get Your First Job</Heading>
-                <SubHeading>
+                <Heading className="font-serif">
+                  Join Your new <span className="text-rose-500">Company</span>
+                </Heading>
+                <SubHeading className="font-mono">
                   Empower your career with a dynamic and collaborative work
                   environment.
                 </SubHeading>
               </div>
               <Filter
                 align={1}
+                className="border-2 border-gray-900 rounded-none"
+                buttonVariant="destructive"
                 components={{
                   search: [
                     {
@@ -77,16 +80,20 @@ export default function Hero() {
                 }}
               />
               <JobCards
+                jobCardType="JobCard2"
                 jobNameStyle={{
                   font: "text-2xl md:text-3xl",
-                  fontWeight: "font-semibold",
+                  fontWeight: "font-bold",
                   fontColor: "text-black",
+                  fontFamily: "font-serif",
                 }}
                 descriptionStyle={{
-                  font: "text-base md:text-lg",
+                  font: "text-sm md:text-lg",
                   fontWeight: "font-normal",
-                  fontColor: "text-gray-500",
+                  fontColor: "text-gray-900",
+                  fontFamily: "font-sans2"
                 }}
+                clientId="client2"
               />
             </JobProvider>
           </FilterBoxProvider>

@@ -2,15 +2,25 @@
 import Link from "next/link";
 
 import { useJobContext } from "@/contexts/jobContext";
-import { JobCard } from "./JobCard";
 import LoadMore from "../ui/LoadMore";
+import { JobCard } from "./JobCardDesigns/JobCard";
+import { JobCard2 } from "./JobCardDesigns/JobCard2";
+import { JobCardsPropsType } from "@/interfaces";
 
-export function JobCards() {
+export const JobCards: React.FC<JobCardsPropsType> = ({
+  jobCardType,
+  jobNameStyle,
+  descriptionStyle,
+  clientId
+}) => {
   const {
     state: { searchJobs, loading },
   } = useJobContext();
   const jobs = searchJobs;
-  
+  let JobCardDesign = JobCard;
+  if (jobCardType === "JobCard2") {
+    JobCardDesign = JobCard2;
+  }
   return (
     <div className="h-screen">
       <div className="flex flex-col mt-7">
@@ -25,23 +35,18 @@ export function JobCards() {
           <>
             {jobs.map((job) => (
               <div className="mb-3 md:mb-5" key={job.job_id}>
-                <Link href={`/${job.job_slug}`} passHref legacyBehavior>
+                <Link href={`/${clientId}/${job.job_slug}`} passHref legacyBehavior>
                   <a target="_blank">
-                    <JobCard
-                      className="job-card"
-                      id={job.job_slug} // Set the 'id' attribute here
+                    <JobCardDesign
+                      id={job.job_slug}
                       key={job.job_id}
                       jobName={{
                         name: job.name,
-                        font: "text-2xl md:text-3xl",
-                        fontWeight: "font-semibold",
-                        fontColor: "text-black",
+                        ...jobNameStyle,
                       }}
                       jobDescription={{
                         description: job.custom_fields[0]?.value,
-                        font: "text-sm md:text-base",
-                        fontWeight: "font-medium",
-                        fontColor: "text-gray-500",
+                        ...descriptionStyle,
                       }}
                     />
                   </a>

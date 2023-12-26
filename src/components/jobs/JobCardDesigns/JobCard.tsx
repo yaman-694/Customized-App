@@ -1,9 +1,10 @@
 import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import React from "react";
-import { Badge } from "../ui/badge";
-import { Button } from "../ui/Button";
-import { Separator } from "../ui/separator";
+import { Badge } from "../../ui/badge";
+import { Button } from "../../ui/Button";
+import { Separator } from "../../ui/separator";
+import { JobCardPropsType } from "@/interfaces";
 
 const JobCardVariants = cva(
   "bg-white flex w-full flex-col items-stretch px-11 py-5 md:py-10 rounded-lg max-md:max-w-full max-md:px-5",
@@ -24,24 +25,9 @@ export interface JobCardProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof JobCardVariants> {}
 
-type Props = {
-  jobName: {
-    name: string;
-    font: string;
-    fontWeight: string;
-    fontColor: string;
-    fontFamily?: string;
-  };
-  jobDescription: {
-    description: string;
-    font?: string;
-    fontWeight?: string;
-    fontColor?: string;
-    fontFamily?: string;
-  };
-};
 
-const JobCard = React.forwardRef<HTMLDivElement, JobCardProps & Props>(
+
+const JobCard = React.forwardRef<HTMLDivElement, JobCardProps & JobCardPropsType>(
   ({ className, variant, jobName, jobDescription, ...props }, ref) => {
     return (
       <div
@@ -78,7 +64,7 @@ const JobCard = React.forwardRef<HTMLDivElement, JobCardProps & Props>(
           <>
             <Separator orientation="horizontal" className="mt-5" />
             <div
-              className={`text-left ${jobDescription.font} ${jobDescription.fontColor} text-base ${jobDescription.fontWeight} mt-5 max-md:max-w-full`}
+              className={`text-left ${jobDescription.font} ${jobDescription.fontColor} text-base ${jobDescription.fontWeight} ${jobDescription.fontFamily} mt-5 max-md:max-w-full`}
             >
               {jobDescription.description}
             </div>
