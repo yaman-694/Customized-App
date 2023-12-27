@@ -1,15 +1,15 @@
-"use server";
+"use client";
 import heroImg from "@/../public/hero/hero.svg";
 import { JobProvider } from "@/contexts/jobContext";
 import { FilterBoxProvider } from "../contexts/filterContext";
 import Filter from "./filter/Filter";
 import { JobCards } from "./jobs/JobCards";
+import { Button } from "./ui/Button";
 import { Heading } from "./ui/Hero/Heading";
 import { SubHeading } from "./ui/Hero/SubHeading";
 import Icon from "./ui/Icon";
-import Image from "next/image";
 
-export default async function Hero() {
+export default function Hero() {
   return (
     <div className="bg-white">
       <div className="relative isolate px-6 lg:px-8">
@@ -25,17 +25,40 @@ export default async function Hero() {
                     Empower your career with a dynamic and collaborative work
                     environment.
                   </SubHeading>
+
+                  <Button
+                    variant="destructive"
+                    className="mt-5 font-semibold px-4 py-4 text-md md:px-6 md:py-6 md:text-lg rounded-full tracking-wide font-mono uppercase"
+                    onClick={() => {
+                      const filterBox = document.getElementById("filter");
+                      if (filterBox)
+                        filterBox.scrollIntoView({
+                          behavior: "smooth",
+                        });
+                    }}
+                  >
+                    Get Started
+                  </Button>
                 </div>
-                  <Icon
-                    iconPath={heroImg}
-                    width="500"
-                    height="500"
-                    name="hero"
-                  ></Icon>
+                <Icon
+                  iconPath={heroImg}
+                  width="500"
+                  height="500"
+                  name="hero"
+                ></Icon>
               </div>
               <Filter
+                badgeStyle={{
+                  parent: {
+                    style: "p-0 mt-1",
+                  },
+                  child: {
+                    variant: "secondary",
+                    style: "bg-slate-200 text-slate-700 rounded-none",
+                  },
+                }}
                 align={2}
-                className="border-none"
+                className="border-none font-mono text-lg"
                 buttonVariant="destructive"
                 components={{
                   search: [
@@ -90,7 +113,7 @@ export default async function Hero() {
                       ],
                     },
                     {
-                      name: "country",
+                      name: "role",
                       className: "border-2 rounded-none",
                       options: [
                         {
@@ -131,6 +154,7 @@ export default async function Hero() {
                   fontFamily: "font-sans2",
                 }}
                 clientId="client2"
+                badgeClassName="font-mono"
               />
             </JobProvider>
           </FilterBoxProvider>

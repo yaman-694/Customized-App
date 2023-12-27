@@ -1,5 +1,3 @@
-import exp from "constants";
-
 export type option = {
   value: string;
   label: string;
@@ -34,6 +32,7 @@ export type ButtonVariant = {
 };
 
 export type JobCardPropsType = {
+  badgeClassName?: string;
   className?: string;
   jobName: {
     name: string;
@@ -53,6 +52,7 @@ export type JobCardPropsType = {
 
 export type JobCardsPropsType = {
   jobCardType?: string;
+  badgeClassName?: string;
   clientId: string;
   className?: string;
   jobNameStyle?: {
@@ -70,7 +70,6 @@ export type JobCardsPropsType = {
   display?: string;
 };
 
-
 export type JobDescriptionHeaderType = {
   name: {
     name: string;
@@ -78,10 +77,17 @@ export type JobDescriptionHeaderType = {
     fontWeight?: string;
     fontColor?: string;
     fontFamily?: string;
+    style?: string;
   };
-  company: string;
+  company: {
+    name: string;
+    style?: string;
+  };
+  buttonStyle?: {
+    variant: ButtonVariant["type"];
+    style?: string;
+  };
   setOpen: any;
   formType: any;
   children: any;
-  buttonVariant?: ButtonVariant["type"];
 };
