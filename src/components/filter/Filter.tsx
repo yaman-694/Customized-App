@@ -51,6 +51,7 @@ export default function Filter({
   align,
   className,
   buttonVariant,
+  badgeStyle,
 }: {
   className?: string;
   buttonVariant?: ButtonVariant["type"];
@@ -59,13 +60,30 @@ export default function Filter({
     search: ComponentSearch[];
     dropDown: DropDownType[];
   };
+  badgeStyle?: {
+    parent?: {
+      style: string;
+    };
+    child?: {
+      variant:
+        | "round"
+        | "secondary"
+        | "outline"
+        | "destructive"
+        | "default"
+        | null
+        | undefined;
+      style?: string;
+    };
+  };
 }) {
-  
   const { ref, inView } = useInView();
   const { state, dispatch } = useFilterContext();
 
   return (
-    <div ref={ref} id='filter'
+    <div
+      ref={ref}
+      id="filter"
       className={cn(
         "my-16 flex flex-col items-start rounded-lg border border-input p-2",
         className
@@ -113,7 +131,7 @@ export default function Filter({
           </div>
         </>
       )}
-      <div className="px-2 flex flex-wrap gap-3">
+      <div className={cn("px-2 flex flex-wrap gap-3", badgeStyle?.parent?.style)}>
         {Object.keys(state).map((key: string) => {
           // Use type assertion to tell TypeScript that the property exists
           if (key === "active") return null;
@@ -128,8 +146,11 @@ export default function Filter({
           if (Array.isArray(values)) {
             return values.map((value: string, index: number) => (
               <Badge
-                variant="round"
-                className="cursor-pointer mt-2 text-sm hover:bg-slate-100 transition flex gap-1 items-center"
+                variant={badgeStyle?.child?.variant || "round"}
+                className={cn(
+                  "cursor-pointer mt-2 text-sm hover:bg-slate-100  transition",
+                  badgeStyle?.child?.style
+                )}
                 key={index}
                 onClick={() => {
                   dispatch({
@@ -148,8 +169,11 @@ export default function Filter({
           if (values !== "") {
             return (
               <Badge
-                variant="round"
-                className="cursor-pointer mt-2 text-sm hover:bg-slate-100  transition"
+                variant={badgeStyle?.child?.variant || "round"}
+                className={cn(
+                  "cursor-pointer mt-2 text-sm hover:bg-slate-100  transition",
+                  badgeStyle?.child?.style
+                )}
                 key={key}
                 onClick={() => {
                   dispatch({

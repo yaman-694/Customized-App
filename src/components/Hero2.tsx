@@ -28,10 +28,13 @@ export default function Hero() {
 
                   <Button
                     variant="destructive"
-                    className="mt-5 font-semibold px-6 py-6 text-lg rounded-full tracking-wide font-mono uppercase"
-                    onClick={()=> {
+                    className="mt-5 font-semibold px-4 py-4 text-md md:px-6 md:py-6 md:text-lg rounded-full tracking-wide font-mono uppercase"
+                    onClick={() => {
                       const filterBox = document.getElementById("filter");
-                      if(filterBox) filterBox.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+                      if (filterBox)
+                        filterBox.scrollIntoView({
+                          behavior: "smooth",
+                        });
                     }}
                   >
                     Get Started
@@ -45,6 +48,15 @@ export default function Hero() {
                 ></Icon>
               </div>
               <Filter
+                badgeStyle={{
+                  parent: {
+                    style: "p-0 mt-1",
+                  },
+                  child: {
+                    variant: "secondary",
+                    style: "bg-slate-200 text-slate-700 rounded-none",
+                  },
+                }}
                 align={2}
                 className="border-none font-mono text-lg"
                 buttonVariant="destructive"

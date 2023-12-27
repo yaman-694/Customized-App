@@ -45,7 +45,7 @@ const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
                   <Badge
                     key={index}
                     className={cn(
-                      "justify-center text-black text-center text-[10px] md:text-xs whitespace-nowrap rounded-full items-stretch px-2.5 py-[5px] border-[2px] border-solid border-black"
+                      "justify-center text-black text-center text-[10px] md:text-sm whitespace-nowrap rounded-full items-stretch px-2.5 py-[5px] border-[2px] border-solid border-black"
                     , badgeClassName)}
                     variant={"round"}
                   >
