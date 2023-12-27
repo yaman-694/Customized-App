@@ -37,6 +37,7 @@ const Buttons = ({
       </Button>
       <Button
         variant={variant ? variant : "blue"}
+
         className={`w-full ${variant === "destructive" ? "rounded-none" : ""}`}
       >
         Search
@@ -103,9 +104,10 @@ export default function Filter({
                 type={component.name}
                 options={component.options}
                 className={cn(
-                  "w-[140px] md:w-[200px] flex-1",
+                  "w-[140px] md:w-[200px] flex-1 font-semibold",
                   component.className
                 )}
+                fontStyle="font-mono"
               />
             ))}
           </div>

@@ -14,7 +14,8 @@ export const JobCards: React.FC<JobCardsPropsType> = ({
   descriptionStyle,
   clientId,
   display,
-  className
+  className,
+  badgeClassName,
 }) => {
   const {
     state: { searchJobs, loading },
@@ -56,6 +57,7 @@ export const JobCards: React.FC<JobCardsPropsType> = ({
                         ...descriptionStyle,
                       }}
                       className={display}
+                      badgeClassName={badgeClassName}
                     />
                   </a>
                 </Link>
@@ -67,4 +69,4 @@ export const JobCards: React.FC<JobCardsPropsType> = ({
       <LoadMore />
     </div>
   );
-}
+};

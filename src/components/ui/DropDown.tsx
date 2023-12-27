@@ -22,8 +22,10 @@ export function DropDown({
   type,
   options,
   className,
+  fontStyle,
 }: {
   type: DropDownOptionType["type"];
+  fontStyle?: string;
   options: { value: string; label: string }[];
   className?: string;
 }) {
@@ -62,6 +64,7 @@ export function DropDown({
               <CommandItem
                 key={option.value}
                 value={option.value}
+                className={fontStyle}
                 onSelect={(currentValue) => {
                   currentValue = currentValue[0].toUpperCase() + currentValue.slice(1);
                   const updatedValue = value.includes(currentValue)

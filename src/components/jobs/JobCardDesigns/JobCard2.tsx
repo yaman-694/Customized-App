@@ -5,13 +5,14 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import { Badge } from "../../ui/Badge";
 import { Button } from "../../ui/Button";
+import ApplyArrow from "@/components/Svg/ApplyArrow";
 
 const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
-  ({ className, jobName, jobDescription, ...props }, ref) => {
+  ({ className, jobName, jobDescription, badgeClassName, ...props }, ref) => {
     return (
       <div
         className={cn(
-          "bg-white flex w-full h-full flex-col items-stretch px-11 py-5 md:py-10 max-md:max-w-full max-md:px-5 border-2 border-gray-900 rounded-none hover:shadow-black_drop md:hover:shadow-black_drop_md transistion-all duration-300",
+          "group bg-white flex w-full h-full flex-col items-stretch px-11 py-5 md:py-10 max-md:max-w-full max-md:px-5 border-2 border-gray-900 rounded-none hover:shadow-black_drop md:hover:shadow-black_drop_md transistion-all duration-300",
           className
         )}
         ref={ref}
@@ -43,7 +44,9 @@ const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
                 (item, index) => (
                   <Badge
                     key={index}
-                    className="justify-center text-black text-center text-[10px] md:text-xs whitespace-nowrap rounded-full items-stretch px-2.5 py-[5px] border-[2px] border-solid border-black"
+                    className={cn(
+                      "justify-center text-black text-center text-[10px] md:text-xs whitespace-nowrap rounded-full items-stretch px-2.5 py-[5px] border-[2px] border-solid border-black"
+                    , badgeClassName)}
                     variant={"round"}
                   >
                     {item}
@@ -55,16 +58,10 @@ const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
           <div className="hidden md:flex">
             <Button
               variant={"wt_bg"}
-              className="font-bold text-md self-end p-0"
+              className="font-bold text-md self-end rounded-none group-hover:bg-rose-500 group-hover:text-white transistion-all duration-300"
             >
               Apply Now
-              <Icon
-                iconPath={applyIcon}
-                width="18"
-                height="18"
-                name="apply"
-                className="ml-1"
-              />
+              <ApplyArrow />
             </Button>
           </div>
         </div>

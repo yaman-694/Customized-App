@@ -37,9 +37,14 @@ export default function JobDescriptionPage({
             name: job?.name,
             fontFamily: "font-sans",
           }}
-          company={job?.company.company_name}
+          company={{
+            name: job?.company.company_name,
+          }}
           setOpen={setOpen}
           formType={formType}
+          buttonStyle={{
+            variant: "blue",
+          }}
         >
           <div className="flex grow basis-[0%] flex-col justify-center items-stretch">
             <Badge
