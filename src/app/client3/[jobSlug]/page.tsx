@@ -70,16 +70,15 @@ export default function JobDescriptionPage({
               name: "phone_number",
               placeholder: "Phone Number",
             },
-            {
-              name: 'state',
-              placeholder: 'State'
-            }
           ]}
           checkbox={[
             {
               terms: "I agree to the terms and conditions",
             },
           ]}
+          defaultInputs={{
+            phone_number: "",
+          }}
           className="font-mono"
         >
           <Button

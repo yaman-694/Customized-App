@@ -16,6 +16,7 @@ export const JobCards: React.FC<JobCardsPropsType> = ({
   display,
   className,
   badgeClassName,
+  applyButtonClassName,
 }) => {
   const {
     state: { searchJobs, loading },
@@ -58,6 +59,7 @@ export const JobCards: React.FC<JobCardsPropsType> = ({
                       }}
                       className={display}
                       badgeClassName={badgeClassName}
+                      applyButtonClassName={applyButtonClassName}
                     />
                   </a>
                 </Link>

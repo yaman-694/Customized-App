@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import heroImg from "@/../public/hero/hero.svg";
-import { theme } from "@/app/client2/page";
+import { theme } from "@/app/client3/page";
 import { JobProvider } from "@/contexts/jobContext";
 import { cn } from "@/lib/utils";
 import { FilterBoxProvider } from "../contexts/filterContext";
@@ -18,7 +18,8 @@ import { useEffect, useState } from "react";
 type OptionsType = {
   value: string;
   label: string;
-};
+
+}
 
 export default function Hero() {
   const [filterBoxComponents, setFilterBoxComponents] = useState<{

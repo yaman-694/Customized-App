@@ -1,5 +1,3 @@
-import applyIcon from "@/../public/icons/apply.svg";
-import Icon from "@/components/ui/Icon";
 import { JobCardPropsType } from "@/interfaces";
 import { cn } from "@/lib/utils";
 import React from "react";
@@ -8,7 +6,7 @@ import { Button } from "../../ui/Button";
 import ApplyArrow from "@/components/Svg/ApplyArrow";
 
 const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
-  ({ className, jobName, jobDescription, badgeClassName, ...props }, ref) => {
+  ({ className, jobName, jobDescription, badgeClassName, children, ...props }, ref) => {
     return (
       <div
         className={cn(
@@ -16,7 +14,6 @@ const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
           className
         )}
         ref={ref}
-        {...props}
       >
         <div
           className={cn(
@@ -45,8 +42,9 @@ const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
                   <Badge
                     key={index}
                     className={cn(
-                      "justify-center text-black text-center text-[10px] md:text-sm whitespace-nowrap rounded-full items-stretch px-2.5 py-[5px] border-[2px] border-solid border-black"
-                    , badgeClassName)}
+                      "justify-center text-black text-center text-[10px] md:text-sm whitespace-nowrap rounded-full items-stretch px-2.5 py-[5px] border-[2px] border-solid border-black",
+                      badgeClassName
+                    )}
                     variant={"round"}
                   >
                     {item}
@@ -58,7 +56,10 @@ const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
           <div className="hidden md:flex">
             <Button
               variant={"wt_bg"}
-              className="font-bold text-md self-end rounded-none group-hover:bg-rose-500 group-hover:text-white transistion-all duration-300"
+              className={cn(
+                "font-bold text-md self-end rounded-none group-hover:bg-rose-500 group-hover:text-white transistion-all duration-300",
+                props.applyButtonClassName
+              )}
             >
               Apply Now
               <ApplyArrow />
