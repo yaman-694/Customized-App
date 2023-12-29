@@ -8,7 +8,6 @@ import { cva, type VariantProps } from "class-variance-authority";
 import * as z from "zod";
 
 import close from "@/../public/icons/close.svg";
-import { Button } from "@/components/ui/Button";
 import {
   Form,
   FormControl,
@@ -20,7 +19,7 @@ import {
 import { Input } from "@/components/ui/Input";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import React, { Children } from "react";
+import React from "react";
 import { Checkbox } from "../ui/Checkbox";
 import Icon from "../ui/Icon";
 
@@ -75,27 +74,24 @@ export interface FormProps
     VariantProps<typeof formVariants> {}
 
 interface FormPropsExtended {
-  inputs: [
-    {
-      name:
-        | "phone_number"
-        | "country"
-        | "city"
-        | "state"
-        | "zip_code"
-        | "address";
-      placeholder: string;
-    }
-  ];
+  inputs: {
+    name:
+      | "phone_number"
+      | "country"
+      | "city"
+      | "state"
+      | "zip_code"
+      | "address";
+    placeholder: string;
+  }[];
   checkbox: [
     {
       terms: string;
     }
   ];
-  defaultInputs: any;
   open?: boolean;
-  setOpen?: any;
-  formType?: any;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  formType?: "default" | "fixed";
 }
 
 const ApplicationForm = React.forwardRef<
@@ -108,13 +104,11 @@ const ApplicationForm = React.forwardRef<
       variant,
       inputs,
       checkbox,
-      defaultInputs,
       open,
       setOpen,
       formType,
       children
-    },
-    ref
+    }
   ) => {
     const form = useForm<z.infer<typeof FormSchema>>({
       resolver: zodResolver(FormSchema),
@@ -123,7 +117,6 @@ const ApplicationForm = React.forwardRef<
         lastname: "",
         email: "",
         resume: "",
-        ...defaultInputs,
       },
     });
 

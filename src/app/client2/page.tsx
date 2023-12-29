@@ -1,7 +1,8 @@
 import Hero from "@/components/Hero2";
+import { HeroProps } from "@/interfaces";
 import React from "react";
 
-export const theme = {
+export const theme: HeroProps = {
   colors: {
     text: 'text-cyan-500',
     buttonBg: 'bg-cyan-500',

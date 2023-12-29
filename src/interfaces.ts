@@ -1,15 +1,17 @@
+import React from "react";
+
 export type HeroProps = {
-  theme?: {
-    colors?: {
-      primary?: string;
-      secondary?: string;
-      primaryForeground?: string;
-    };
-    fonts?: {
-      body?: string;
-      heading?: string;
-      subHeading?: string;
-    };
+  colors?: {
+    text?: string;
+    buttonBg?: string;
+    hoverButtonBg?: string;
+    groupHoverBg?: string;
+    hoverText?: string;
+  };
+  fonts?: {
+    body?: string;
+    heading?: string;
+    subHeading?: string;
   };
 };
 
@@ -50,7 +52,7 @@ export type ButtonVariant = {
 export type JobCardPropsType = {
   applyButtonClassName?: string;
   badgeClassName?: string;
-  children?: any;
+  children?: React.ReactNode;
   className?: string;
   jobName: {
     name: string;
@@ -94,8 +96,8 @@ export type DescriptionApplyButtonProps = {
     variant: ButtonVariant["type"];
     style?: string;
   };
-  setOpen: any;
-  formType: any;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  formType: 'default' | 'fixed';
 };
 
 export interface JobDescriptionHeaderType extends DescriptionApplyButtonProps {
@@ -111,7 +113,7 @@ export interface JobDescriptionHeaderType extends DescriptionApplyButtonProps {
     name: string;
     style?: string;
   };
-  children?: any;
+  children?: React.ReactNode;
   buttonPosition?: "down" | "left"; // set position of button
   goBackButton?: {
     variant: ButtonVariant["type"];

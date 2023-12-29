@@ -47,7 +47,7 @@ export const getJobBySlug = async (slug: string) => {
 export const getKeys = async (keys: string) => {
   const response = await fetch(`${API}/jobs/additional-info/${KEY}?keys=${keys}`);
   const data = await response.json();
-  const revisedData = data?.unique_values?.map((country: any) => {
+  const revisedData = data?.unique_values?.map((country: string) => {
     return {
       label: JSON.parse(country)[`${keys}`].S,
       value: JSON.parse(country)[`${keys}`].S,
