@@ -11,15 +11,9 @@ import { Button } from "./ui/Button";
 import { Heading } from "./ui/Hero/Heading";
 import { SubHeading } from "./ui/Hero/SubHeading";
 import Icon from "./ui/Icon";
-import { ComponentSearch, DropDownType } from "@/interfaces";
+import { ComponentSearch, DropDownType, OptionsType } from "@/interfaces";
 import { getKeys } from "@/services/jobService";
 import { useEffect, useState } from "react";
-
-type OptionsType = {
-  value: string;
-  label: string;
-
-}
 
 export default function Hero() {
   const [filterBoxComponents, setFilterBoxComponents] = useState<{
@@ -32,117 +26,37 @@ export default function Hero() {
         placeholder: "Job Name",
       },
     ],
-    dropDown: [
-      {
-        name: "country",
-        className: "border-2 rounded-none",
-        options: [
-          {
-            value: "Mexico",
-            label: "Mexico",
-          },
-          {
-            value: "Denmark",
-            label: "Denmark",
-          },
-          {
-            value: "Japan",
-            label: "Japan",
-          },
-          {
-            value: "France",
-            label: "France",
-          },
-        ],
-      },
-      {
-        name: "city",
-        className: "border-2 rounded-none",
-        options: [
-          {
-            value: "Oaxaca",
-            label: "Oaxaca",
-          },
-          {
-            value: "Skive",
-            label: "Skive",
-          },
-          {
-            value: "Paris",
-            label: "Paris",
-          },
-          {
-            value: "Tokyo",
-            label: "Tokyo",
-          },
-        ],
-      },
-      {
-        name: "role",
-        className: "border-2 rounded-none",
-        options: [
-          {
-            value: "Mexico",
-            label: "Mexico",
-          },
-          {
-            value: "Denmark",
-            label: "Denmark",
-          },
-          {
-            value: "Japan",
-            label: "Japan",
-          },
-          {
-            value: "France",
-            label: "France",
-          },
-        ],
-      },
-    ],
+    dropDown: [],
   });
-  // const filterBoxComponents: {
-
-  // } =;
+  const countryKeysFunc = async () => {
+    const countryKeys: OptionsType[] = await getKeys("country");
+    const cityKeys: OptionsType[] = await getKeys("city");
+    const roleKeys: OptionsType[] = await getKeys("job_category");
+    setFilterBoxComponents({
+      ...filterBoxComponents,
+      dropDown: [
+        {
+          name: "country",
+          className: "border-2 rounded-none",
+          options: countryKeys,
+        },
+        {
+          name: "city",
+          className: "border-2 rounded-none",
+          options: cityKeys,
+        },
+        {
+          name: "role",
+          className: "border-2 rounded-none",
+          options: roleKeys,
+        },
+      ],
+    });
+  };
   useEffect(() => {
-    const countryKeysFunc = async () => {
-      const countryKeys: OptionsType[] = await getKeys("country");
-      const cityKeys: OptionsType[] = await getKeys("city");
-      const roleKeys: OptionsType[] = await getKeys("job_category");
-      console.log(countryKeys, cityKeys, roleKeys);
-      // setFilterBoxComponents({
-      //   search: filterBoxComponents.search,
-      //   dropDown: [
-      //     {
-      //       name: "country",
-      //       className: "border-2 rounded-none",
-      //       options: countryKeys,
-      //     },
-      //     {
-      //       name: "city",
-      //       className: "border-2 rounded-none",
-      //       options: cityKeys,
-      //     },
-      //     {
-      //       name: "role",
-      //       className: "border-2 rounded-none",
-      //       options: roleKeys,
-      //     },
-      //   ],
-      // });
-      // filterBoxComponents.dropDown[0].options = countryKeys;
-      // filterBoxComponents.dropDown[1].options = cityKeys;
-      // filterBoxComponents.dropDown[2].options = roleKeys;
-    };
     countryKeysFunc();
-  }, [filterBoxComponents]);
+  }, []);
 
-  // const colors = {
-  //   text: `text-${theme?.colors?.primary}`,
-  //   bg: `bg-${theme?.colors?.primary}`,
-  //   hoverButtonBg: `hover:bg-${theme?.colors?.hoverPrimary}`,
-  //   grouphoverButtonBg: theme?.colors?.groupHoverPrimary,
-  // }
   return (
     <div className="bg-white">
       <div className="relative isolate px-6 lg:px-8">
@@ -216,6 +130,7 @@ export default function Hero() {
                 // className="flex flex-col"
                 // applyButtonClassName='self-start'
                 display="flex-row"
+                // depend on jobCard
                 applyButtonClassName={`${theme?.colors?.groupHoverBg} ${theme?.colors?.hoverText}`}
                 className="grid grid-cols-1 gap-x-4 md:grid-cols-2"
                 jobNameStyle={{

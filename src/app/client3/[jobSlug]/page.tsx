@@ -35,7 +35,7 @@ export default function JobDescriptionPage({
     <>
       <JobDescription>
         <div className="hidden md:flex item-center mb-6 w-10 p-2 rounded-full bg-slate-200 text-slate-700 hover:shadow-sm hover:shadow-slate-400 transition-all ease-in ">
-          <Link href="/client2">
+          <Link href="/client3">
             <BackArrow />
           </Link>
         </div>
@@ -76,9 +76,6 @@ export default function JobDescriptionPage({
               terms: "I agree to the terms and conditions",
             },
           ]}
-          defaultInputs={{
-            phone_number: "",
-          }}
           className="font-mono"
         >
           <Button
