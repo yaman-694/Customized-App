@@ -2,7 +2,7 @@
 
 import close from "@/../public/icons/close.svg";
 import { useFilterContext } from "@/contexts/filterContext";
-import { ButtonVariant, ComponentSearch, DropDownType } from "@/interfaces";
+import { DropDownType, FilterPropsType, SearchButtonsType } from "@/interfaces";
 import { cn } from "@/lib/utils";
 import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
@@ -11,22 +11,11 @@ import Icon from "../ui/Icon";
 import { Separator } from "../ui/Separator";
 import { Form } from "./Form";
 
-type SearchButtonsType = {
-  reset?: {
-    variant?: ButtonVariant["type"];
-    style?: string;
-  };
-  search?: {
-    variant?: ButtonVariant["type"];
-    style?: string;
-  };
-};
-
 const Buttons = ({
   dispatch,
   searchButtons,
 }: {
-  searchButtons: SearchButtonsType;
+  searchButtons?: SearchButtonsType;
   dispatch: React.Dispatch<{
     type: string;
     value?: string | string[];
@@ -68,32 +57,7 @@ export default function Filter({
   className,
   searchButtons,
   badgeStyle,
-}: {
-  className?: string;
-  searchButtons: SearchButtonsType;
-  buttonVariant?: ButtonVariant["type"];
-  align: 1 | 2;
-  components: {
-    search: ComponentSearch[];
-    dropDown: DropDownType[];
-  };
-  badgeStyle?: {
-    parent?: {
-      style: string;
-    };
-    child?: {
-      variant:
-        | "round"
-        | "secondary"
-        | "outline"
-        | "destructive"
-        | "default"
-        | null
-        | undefined;
-      style?: string;
-    };
-  };
-}) {
+}: FilterPropsType) {
   const { state, dispatch } = useFilterContext();
 
   return (

@@ -57,6 +57,11 @@ export const JobCards: React.FC<JobCardsPropsType> = ({
                         description: job.custom_fields[0]?.value,
                         ...descriptionStyle,
                       }}
+                      jobKeys={{
+                        jobCategory: job.job_category,
+                        jobType: job.job_type,
+                        jobCity: job.city,
+                      }}
                       className={display}
                       badgeClassName={badgeClassName}
                       applyButtonClassName={applyButtonClassName}
