@@ -15,7 +15,7 @@ export default function Hero() {
           <FilterBoxProvider>
             <JobProvider>
               <div className="text-center">
-                <Heading>Get Your First Job</Heading>
+                <Heading>Get Your second Job</Heading>
                 <SubHeading>
                   Empower your career with a dynamic and collaborative work
                   environment.
