@@ -165,3 +165,8 @@ export type FilterPropsType = {
     };
   };
 };
+
+export type OptionsType = {
+  value: string;
+  label: string;
+};

@@ -43,21 +43,21 @@ const JobCard = React.forwardRef<
             {jobName.name}
           </header>
           <div className="flex items-stretch gap-3 mt-3 pr-20 max-md:pr-5">
-            {Array.from(["Engineering", "London, UK", "Remote"]).map(
-              (item, index) => (
-                <Badge
-                  key={index}
-                  className="justify-center text-black text-center text-[10px] md:text-xs whitespace-nowrap rounded items-stretch px-2.5 py-[5px] border-[1px] border-solid border-black"
-                  variant={"round"}
-                >
-                  {item}
-                </Badge>
-              )
-            )}
+            {Object.values(props.jobKeys ?? {}).map((item, index) => (
+              <Badge
+                key={index}
+                className="justify-center text-black text-center text-[10px] md:text-xs whitespace-nowrap rounded items-stretch px-2.5 py-[5px] border-[1px] border-solid border-black"
+                variant={"round"}
+              >
+                {item}
+              </Badge>
+            ))}
           </div>
         </div>
-        <div className="flex">
-          <Button variant={"blue"}>Apply Now</Button>
+        <div className={"flex"}>
+          <Button variant={"blue"} className={props.applyButtonClassName}>
+            Apply Now
+          </Button>
         </div>
       </div>
       {jobDescription?.description !== "None" ? (

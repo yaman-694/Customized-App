@@ -4,10 +4,10 @@ import React from "react";
 
 export const theme: HeroProps = {
   colors: {
-    text: "text-rose-500",
-    buttonBg: "bg-rose-500",
-    hoverButtonBg: "hover:bg-rose-600",
-    groupHoverBg: "group-hover:bg-rose-500",
+    text: "text-teal-500",
+    buttonBg: "bg-teal-500",
+    hoverButtonBg: "hover:bg-teal-600",
+    groupHoverBg: "group-hover:bg-teal-500",
     hoverText: "group-hover:text-white",
   },
   fonts: {
