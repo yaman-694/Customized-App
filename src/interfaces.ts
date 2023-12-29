@@ -51,6 +51,12 @@ export type ButtonVariant = {
 
 export type JobCardPropsType = {
   applyButtonClassName?: string;
+  jobKeys?: {
+    jobCategory?: string;
+    jobType?: string;
+    jobCity?: string;
+    customField?: string;
+  };
   badgeClassName?: string;
   children?: React.ReactNode;
   className?: string;
@@ -120,3 +126,42 @@ export interface JobDescriptionHeaderType extends DescriptionApplyButtonProps {
     style?: string;
   };
 }
+
+
+export type SearchButtonsType = {
+  reset?: {
+    variant?: ButtonVariant["type"];
+    style?: string;
+  };
+  search?: {
+    variant?: ButtonVariant["type"];
+    style?: string;
+  };
+};
+
+export type FilterPropsType = {
+  className?: string;
+  searchButtons?: SearchButtonsType;
+  buttonVariant?: ButtonVariant["type"];
+  align: 1 | 2;
+  components: {
+    search: ComponentSearch[];
+    dropDown: DropDownType[];
+  };
+  badgeStyle?: {
+    parent?: {
+      style: string;
+    };
+    child?: {
+      variant:
+        | "round"
+        | "secondary"
+        | "outline"
+        | "destructive"
+        | "default"
+        | null
+        | undefined;
+      style?: string;
+    };
+  };
+};

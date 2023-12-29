@@ -7,7 +7,7 @@ const KEY = "37c5b338-7063-4047-8941-f01ff507b2f3";
 
 export const getJobs = async () => {
   const response = await fetch(
-    `${API}/jobs/${KEY}?keys=custom_field[2]&limit=10`
+    `${API}/jobs/${KEY}?keys=custom_field[2],job_category,job_type&limit=10`
   );
   const data = await response.json();
   return data;
@@ -32,7 +32,7 @@ export const searchJobs = async ({ filter }: { filter: FilterBox }) => {
     query += `country=${filter.country.join(",")}`;
   }
   const response = await fetch(
-    `${API}/jobs/search/${KEY}?${query}&keys=custom_field[2]`
+    `${API}/jobs/search/${KEY}?${query}&keys=custom_field[2],job_category,job_type`
   );
   const data = await response.json();
   return data;

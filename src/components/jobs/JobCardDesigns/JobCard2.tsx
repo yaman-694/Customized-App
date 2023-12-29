@@ -37,8 +37,7 @@ const JobCard2 = React.forwardRef<HTMLDivElement, JobCardPropsType>(
               </>
             ) : null}
             <div className="flex items-stretch gap-3 mt-3 pr-20 max-md:pr-5">
-              {Array.from(["Engineering", "London, UK", "Remote"]).map(
-                (item, index) => (
+              { Object.values(props.jobKeys ?? {}).map((item, index) => (
                   <Badge
                     key={index}
                     className={cn(
