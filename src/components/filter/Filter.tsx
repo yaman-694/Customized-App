@@ -1,5 +1,4 @@
 "use client";
-import { useInView } from "react-intersection-observer";
 
 import close from "@/../public/icons/close.svg";
 import { useFilterContext } from "@/contexts/filterContext";
@@ -11,13 +10,23 @@ import { DropDown } from "../ui/DropDown";
 import Icon from "../ui/Icon";
 import { Separator } from "../ui/Separator";
 import { Form } from "./Form";
-import { use, useEffect } from "react";
+
+type SearchButtonsType = {
+  reset?: {
+    variant?: ButtonVariant["type"];
+    style?: string;
+  };
+  search?: {
+    variant?: ButtonVariant["type"];
+    style?: string;
+  };
+};
 
 const Buttons = ({
   dispatch,
-  variant,
+  searchButtons,
 }: {
-  variant?: ButtonVariant["type"];
+  searchButtons: SearchButtonsType;
   dispatch: React.Dispatch<{
     type: string;
     value?: string | string[];
@@ -26,7 +35,11 @@ const Buttons = ({
   return (
     <div className="flex w-full md:w-[200px] justify-between">
       <Button
-        variant={"wt_bg"}
+        variant={
+          searchButtons?.reset?.variant
+            ? searchButtons?.reset?.variant
+            : "wt_bg"
+        }
         onClick={() => {
           dispatch({
             type: "RESET",
@@ -36,9 +49,12 @@ const Buttons = ({
         Reset
       </Button>
       <Button
-        variant={variant ? variant : "blue"}
-
-        className={`w-full ${variant === "destructive" ? "rounded-none" : ""}`}
+        variant={
+          searchButtons?.search?.variant
+            ? searchButtons?.search?.variant
+            : "blue"
+        }
+        className={`w-full ${searchButtons?.search?.style}`}
       >
         Search
       </Button>
@@ -50,10 +66,11 @@ export default function Filter({
   components,
   align,
   className,
-  buttonVariant,
+  searchButtons,
   badgeStyle,
 }: {
   className?: string;
+  searchButtons: SearchButtonsType;
   buttonVariant?: ButtonVariant["type"];
   align: 1 | 2;
   components: {
@@ -77,12 +94,10 @@ export default function Filter({
     };
   };
 }) {
-  const { ref, inView } = useInView();
   const { state, dispatch } = useFilterContext();
 
   return (
     <div
-      ref={ref}
       id="filter"
       className={cn(
         "my-16 flex flex-col items-start rounded-lg border border-input p-2",
@@ -105,14 +120,14 @@ export default function Filter({
               />
             ))}
           </div>
-          <Buttons dispatch={dispatch} variant={buttonVariant} />
+          <Buttons dispatch={dispatch} searchButtons={searchButtons} />
         </div>
       )}
       {align === 2 && (
         <>
           <div className="flex w-full gap-2 mb-3">
             <Form search={components.search} />
-            <Buttons dispatch={dispatch} variant={buttonVariant} />
+            <Buttons dispatch={dispatch} searchButtons={searchButtons} />
           </div>
           <Separator orientation="horizontal" />
           <div className="mt-4 flex flex-wrap justify-between gap-1 w-full md:gap-3 md:justify-start">
@@ -131,7 +146,9 @@ export default function Filter({
           </div>
         </>
       )}
-      <div className={cn("px-2 flex flex-wrap gap-3", badgeStyle?.parent?.style)}>
+      <div
+        className={cn("px-2 flex flex-wrap gap-3", badgeStyle?.parent?.style)}
+      >
         {Object.keys(state).map((key: string) => {
           // Use type assertion to tell TypeScript that the property exists
           if (key === "active") return null;

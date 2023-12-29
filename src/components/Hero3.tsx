@@ -1,6 +1,6 @@
-'use client'
+"use client";
 import heroImg from "@/../public/hero/hero.svg";
-import { theme } from "@/app/client2/page";
+import { theme } from "@/app/client3/page";
 import { JobProvider } from "@/contexts/jobContext";
 import { cn } from "@/lib/utils";
 import { FilterBoxProvider } from "../contexts/filterContext";
@@ -95,13 +95,13 @@ export default function Hero() {
     ],
   });
   // const filterBoxComponents: {
-    
+
   // } =;
   useEffect(() => {
     const countryKeysFunc = async () => {
-      const countryKeys: any[] = await getKeys('country');
-      const cityKeys: any[] = await getKeys('city');
-      const roleKeys: any[] = await getKeys('job_category');
+      const countryKeys: any[] = await getKeys("country");
+      const cityKeys: any[] = await getKeys("city");
+      const roleKeys: any[] = await getKeys("job_category");
       console.log(countryKeys, cityKeys, roleKeys);
       // setFilterBoxComponents({
       //   search: filterBoxComponents.search,
@@ -126,7 +126,7 @@ export default function Hero() {
       // filterBoxComponents.dropDown[0].options = countryKeys;
       // filterBoxComponents.dropDown[1].options = cityKeys;
       // filterBoxComponents.dropDown[2].options = roleKeys;
-    }
+    };
     countryKeysFunc();
   }, [filterBoxComponents]);
 
@@ -224,7 +224,7 @@ export default function Hero() {
                   fontFamily: theme?.fonts?.subHeading,
                 }}
                 badgeClassName={theme?.fonts?.body}
-                clientId="client2"
+                clientId="client3"
               />
             </JobProvider>
           </FilterBoxProvider>

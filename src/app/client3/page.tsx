@@ -1,12 +1,12 @@
-import Hero from "@/components/Hero2";
+import Hero from "@/components/Hero3";
 import React from "react";
 
 export const theme = {
   colors: {
-    text: 'text-cyan-500',
-    buttonBg: 'bg-cyan-500',
-    hoverButtonBg: 'hover:bg-cyan-600',
-    groupHoverBg: 'group-hover:bg-cyan-500',
+    text: 'text-rose-500',
+    buttonBg: 'bg-rose-500',
+    hoverButtonBg: 'hover:bg-rose-600',
+    groupHoverBg: 'group-hover:bg-rose-500',
     hoverText: 'group-hover:text-white',
   },
   fonts: {

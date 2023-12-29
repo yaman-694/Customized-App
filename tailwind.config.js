@@ -19,6 +19,7 @@ module.exports = {
       boxShadow: {
         black_drop: "8px 8px 0px 0px rgba(0, 0, 0)",
         black_drop_md: "10px 10px 0px 0px rgba(0, 0, 0)",
+        border_sm: "inset 0px 0px 0px 2px rgba(0, 0, 0)",
       },
       colors: {
         border: "hsl(var(--border))",

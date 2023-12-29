@@ -1,3 +1,18 @@
+export type HeroProps = {
+  theme?: {
+    colors?: {
+      primary?: string;
+      secondary?: string;
+      primaryForeground?: string;
+    };
+    fonts?: {
+      body?: string;
+      heading?: string;
+      subHeading?: string;
+    };
+  };
+};
+
 export type option = {
   value: string;
   label: string;
@@ -27,12 +42,15 @@ export type ButtonVariant = {
     | "ghost"
     | "blue"
     | "wt_bg"
+    | "outline_dark"
     | null
     | undefined;
 };
 
 export type JobCardPropsType = {
+  applyButtonClassName?: string;
   badgeClassName?: string;
+  children?: any;
   className?: string;
   jobName: {
     name: string;
@@ -68,9 +86,19 @@ export type JobCardsPropsType = {
     fontFamily?: string;
   };
   display?: string;
+  applyButtonClassName?: string;
 };
 
-export type JobDescriptionHeaderType = {
+export type DescriptionApplyButtonProps = {
+  buttonStyle?: {
+    variant: ButtonVariant["type"];
+    style?: string;
+  };
+  setOpen: any;
+  formType: any;
+};
+
+export interface JobDescriptionHeaderType extends DescriptionApplyButtonProps {
   name: {
     name: string;
     font?: string;
@@ -83,11 +111,10 @@ export type JobDescriptionHeaderType = {
     name: string;
     style?: string;
   };
-  buttonStyle?: {
+  children?: any;
+  buttonPosition?: "down" | "left"; // set position of button
+  goBackButton?: {
     variant: ButtonVariant["type"];
     style?: string;
   };
-  setOpen: any;
-  formType: any;
-  children: any;
-};
+}
