@@ -47,7 +47,7 @@ export function DropDown({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn('justify-between', className)}
+          className={cn("justify-between", className)}
         >
           {value?.length != 0
             ? `${value.length + " " + type} selected`
@@ -59,14 +59,15 @@ export function DropDown({
         <Command>
           <CommandInput placeholder={`Search ${type}`} className="h-9" />
           <CommandEmpty>No option found.</CommandEmpty>
-          <CommandGroup>
+          <CommandGroup className="max-h-40 overflow-y-hidden hover:overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
             {options.map((option) => (
               <CommandItem
                 key={option.value}
                 value={option.value}
                 className={fontStyle}
                 onSelect={(currentValue) => {
-                  currentValue = currentValue[0].toUpperCase() + currentValue.slice(1);
+                  currentValue =
+                    currentValue[0].toUpperCase() + currentValue.slice(1);
                   const updatedValue = value.includes(currentValue)
                     ? value.filter((val) => val !== currentValue)
                     : [...value, currentValue];

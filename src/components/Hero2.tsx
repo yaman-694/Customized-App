@@ -32,116 +32,107 @@ export default function Hero() {
       },
     ],
     dropDown: [
-      {
-        name: "country",
-        className: "border-2 rounded-none",
-        options: [
-          {
-            value: "Mexico",
-            label: "Mexico",
-          },
-          {
-            value: "Denmark",
-            label: "Denmark",
-          },
-          {
-            value: "Japan",
-            label: "Japan",
-          },
-          {
-            value: "France",
-            label: "France",
-          },
-        ],
-      },
-      {
-        name: "city",
-        className: "border-2 rounded-none",
-        options: [
-          {
-            value: "Oaxaca",
-            label: "Oaxaca",
-          },
-          {
-            value: "Skive",
-            label: "Skive",
-          },
-          {
-            value: "Paris",
-            label: "Paris",
-          },
-          {
-            value: "Tokyo",
-            label: "Tokyo",
-          },
-        ],
-      },
-      {
-        name: "role",
-        className: "border-2 rounded-none",
-        options: [
-          {
-            value: "Mexico",
-            label: "Mexico",
-          },
-          {
-            value: "Denmark",
-            label: "Denmark",
-          },
-          {
-            value: "Japan",
-            label: "Japan",
-          },
-          {
-            value: "France",
-            label: "France",
-          },
-        ],
-      },
+      // {
+      //   name: "country",
+      //   className: "border-2 rounded-none",
+      //   options: [
+      //     {
+      //       value: "Mexico",
+      //       label: "Mexico",
+      //     },
+      //     {
+      //       value: "Denmark",
+      //       label: "Denmark",
+      //     },
+      //     {
+      //       value: "Japan",
+      //       label: "Japan",
+      //     },
+      //     {
+      //       value: "France",
+      //       label: "France",
+      //     },
+      //   ],
+      // },
+      // {
+      //   name: "city",
+      //   className: "border-2 rounded-none",
+      //   options: [
+      //     {
+      //       value: "Oaxaca",
+      //       label: "Oaxaca",
+      //     },
+      //     {
+      //       value: "Skive",
+      //       label: "Skive",
+      //     },
+      //     {
+      //       value: "Paris",
+      //       label: "Paris",
+      //     },
+      //     {
+      //       value: "Tokyo",
+      //       label: "Tokyo",
+      //     },
+      //   ],
+      // },
+      // {
+      //   name: "role",
+      //   className: "border-2 rounded-none",
+      //   options: [
+      //     {
+      //       value: "Mexico",
+      //       label: "Mexico",
+      //     },
+      //     {
+      //       value: "Denmark",
+      //       label: "Denmark",
+      //     },
+      //     {
+      //       value: "Japan",
+      //       label: "Japan",
+      //     },
+      //     {
+      //       value: "France",
+      //       label: "France",
+      //     },
+      //   ],
+      // },
     ],
   });
   // const filterBoxComponents: {
 
   // } =;
+  const countryKeysFunc = async () => {
+    const countryKeys: OptionsType[] = await getKeys("country");
+    const cityKeys: OptionsType[] = await getKeys("city");
+    const roleKeys: OptionsType[] = await getKeys("job_category");
+    console.log(countryKeys, cityKeys, roleKeys);
+    setFilterBoxComponents({
+      ...filterBoxComponents,
+      dropDown: [
+        {
+          name: "country",
+          className: "border-2 rounded-none",
+          options: countryKeys,
+        },
+        {
+          name: "city",
+          className: "border-2 rounded-none",
+          options: cityKeys,
+        },
+        {
+          name: "role",
+          className: "border-2 rounded-none",
+          options: roleKeys,
+        },
+      ],
+    });
+  };
   useEffect(() => {
-    const countryKeysFunc = async () => {
-      const countryKeys: OptionsType[] = await getKeys("country");
-      const cityKeys: OptionsType[] = await getKeys("city");
-      const roleKeys: OptionsType[] = await getKeys("job_category");
-      console.log(countryKeys, cityKeys, roleKeys);
-      // setFilterBoxComponents({
-      //   search: filterBoxComponents.search,
-      //   dropDown: [
-      //     {
-      //       name: "country",
-      //       className: "border-2 rounded-none",
-      //       options: countryKeys,
-      //     },
-      //     {
-      //       name: "city",
-      //       className: "border-2 rounded-none",
-      //       options: cityKeys,
-      //     },
-      //     {
-      //       name: "role",
-      //       className: "border-2 rounded-none",
-      //       options: roleKeys,
-      //     },
-      //   ],
-      // });
-      // filterBoxComponents.dropDown[0].options = countryKeys;
-      // filterBoxComponents.dropDown[1].options = cityKeys;
-      // filterBoxComponents.dropDown[2].options = roleKeys;
-    };
     countryKeysFunc();
-  }, [filterBoxComponents]);
+  }, []);
 
-  // const colors = {
-  //   text: `text-${theme?.colors?.primary}`,
-  //   bg: `bg-${theme?.colors?.primary}`,
-  //   hoverButtonBg: `hover:bg-${theme?.colors?.hoverPrimary}`,
-  //   grouphoverButtonBg: theme?.colors?.groupHoverPrimary,
-  // }
   return (
     <div className="bg-white">
       <div className="relative isolate px-6 lg:px-8">
